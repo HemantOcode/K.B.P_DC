@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/about.dart';
 import 'package:flutter_application_1/login.dart';
+import 'package:multilevel_drawer/multilevel_drawer.dart';
 // import 'package:flutter_application_7/authModule/auth_provider.dart';
 // import 'package:flutter_application_7/authModule/login_screen.dart';
 // import 'package:localstorage/localstorage.dart';
@@ -19,47 +20,57 @@ class _drawerState extends State<drawer> {
   @override
   Widget build(BuildContext context) {
     // final userDetails = Provider.of<Auth>(context).currentUser;
-    return Drawer(
-      child: ListView(
-        children: <Widget>[
-          // UserAccountsDrawerHeader(
-          //   accountName:
-          //    Text(userDetails['name'],
-          //     style: TextStyle(
-          //         fontSize: 20,
-          //         fontWeight: FontWeight.w700,
-          //         letterSpacing: 1.2),
-          //   ),
-          //   accountEmail: Text(userDetails['email'],
-          //       style: TextStyle(
-          //           fontSize: 16,
-          //           fontWeight: FontWeight.w500,
-          //           letterSpacing: 1.2)),
-          // ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => about()));
-            },
-            child: const ListTile(
-              title: Text("About US"),
-              leading: Icon(Icons.group),
+    Size size = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Scaffold(
+        drawer: MultiLevelDrawer(
+            header: Container(
+              height: size.height * .20,
+              child: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset(
+                    "assets/fb.png",
+                    width: 100,
+                    height: 100,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text("R")
+                ],
+              )),
             ),
-          ),
-          InkWell(
-            onTap: () async {
-              // await storage.deleteItem('med-user');
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => login()),
-                  (route) => false);
-            },
-            child: const ListTile(
-              title: Text("Log-Out"),
-              leading: Icon(Icons.exit_to_app),
-            ),
-          )
-        ],
+            children: [
+              MLMenuItem(
+                  content: Text('Person'),
+                  leading: Icon(Icons.person),
+                  trailing: Icon(Icons.arrow_right),
+                  onClick: () {},
+                  subMenuItems: [
+                    MLSubmenu(
+                        submenuContent: Text('Option 1'),
+                        onClick: () {
+                          Navigator.pop(context);
+                        })
+                  ]),
+              MLMenuItem(
+                  content: Text('Person'),
+                  leading: Icon(Icons.person),
+                  trailing: Icon(Icons.arrow_right),
+                  onClick: () {},
+                  subMenuItems: [
+                    MLSubmenu(
+                        submenuContent: Text('Option 1'),
+                        onClick: () {
+                          Navigator.pop(context);
+                        }),
+                    MLSubmenu(submenuContent: Text('Option 0'), onClick: () {}),
+                    MLSubmenu(submenuContent: Text('Option 2'), onClick: () {}),
+                    MLSubmenu(submenuContent: Text('Option 3'), onClick: () {}),
+                  ]),
+            ]),
       ),
     );
   }

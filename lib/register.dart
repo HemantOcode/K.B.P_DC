@@ -22,6 +22,14 @@ class register extends StatelessWidget {
           TextFormField(
             // controller: _email,
             decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.blue[100],
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(25)),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(25)),
                 labelText: "E-mail",
                 icon: Icon(
                   Icons.email,
@@ -33,6 +41,14 @@ class register extends StatelessWidget {
             // controller: _pass,
             obscureText: true,
             decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.blue[100],
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(25)),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(25)),
                 labelText: "Password",
                 icon: Icon(
                   Icons.lock,
@@ -43,11 +59,20 @@ class register extends StatelessWidget {
           TextFormField(
             // controller: _confmpass,
             decoration: InputDecoration(
-                labelText: "Conform Password",
-                icon: Icon(
-                  Icons.lock,
-                  color: Colors.lightBlue,
-                )),
+              labelText: "Conform Password",
+              icon: Icon(
+                Icons.lock,
+                color: Colors.lightBlue,
+              ),
+              filled: true,
+              fillColor: Colors.blue[100],
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.circular(25)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.circular(25)),
+            ),
           ),
           TextButton(
               onPressed: () {
@@ -59,6 +84,8 @@ class register extends StatelessWidget {
             onPressed: () {},
             child: Text("   Register   "),
             style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(19)),
                 primary: Colors.deepPurpleAccent.shade700),
           )
         ],

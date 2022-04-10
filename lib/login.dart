@@ -22,6 +22,14 @@ class login extends StatelessWidget {
           TextFormField(
             // controller: _email,
             decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.blue[100],
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(25)),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(25)),
                 labelText: "E-mail",
                 icon: Icon(
                   Icons.email,
@@ -33,6 +41,14 @@ class login extends StatelessWidget {
             // controller: _pass,
             obscureText: true,
             decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.blue[100],
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(25)),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(25)),
                 labelText: "Password",
                 icon: Icon(
                   Icons.lock,
@@ -50,7 +66,9 @@ class login extends StatelessWidget {
             onPressed: () {},
             child: Text("     Login      "),
             style: ElevatedButton.styleFrom(
-                primary: Colors.deepPurpleAccent.shade700),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(19)),
+                primary: Colors.blue.shade700),
           )
         ],
       ),
