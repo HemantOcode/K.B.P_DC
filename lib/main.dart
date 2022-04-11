@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/about/about.dart';
 import 'package:flutter_application_1/home.dart';
-import 'package:flutter_application_1/register.dart';
-import 'login.dart';
+import 'package:flutter_application_1/Auth/register.dart';
+import 'Auth/login.dart';
 
 void main() {
   runApp(KBP());
@@ -12,7 +13,7 @@ class KBP extends StatelessWidget {
   Widget build(BuildContext context) {
     return (MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: homepage(),
+      home: about(),
     ));
   }
 }

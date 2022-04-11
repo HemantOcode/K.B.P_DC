@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/login.dart';
+import 'package:flutter_application_1/Auth/register.dart';
 
-class register extends StatelessWidget {
-  const register({Key? key}) : super(key: key);
+class login extends StatelessWidget {
+  const login({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return (MaterialApp(
         home: Scaffold(
             body: SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(vertical: 210, horizontal: 15),
+      padding: const EdgeInsets.symmetric(vertical: 210, horizontal: 3),
       child: Column(
         children: [
           Container(
@@ -52,41 +52,23 @@ class register extends StatelessWidget {
                 labelText: "Password",
                 icon: Icon(
                   Icons.lock,
-                  color: Colors.lightBlue,
+                  color: Colors.blue,
                 )),
           ),
-          SizedBox(height: 19.0),
-          TextFormField(
-            // controller: _confmpass,
-            decoration: InputDecoration(
-              labelText: "Conform Password",
-              icon: Icon(
-                Icons.lock,
-                color: Colors.lightBlue,
-              ),
-              filled: true,
-              fillColor: Colors.blue[100],
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(25)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(25)),
-            ),
-          ),
+          SizedBox(height: 10.0),
           TextButton(
               onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => login()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => register()));
               },
-              child: Text("Already Registered !! ")),
+              child: Text("Register ")),
           ElevatedButton(
             onPressed: () {},
-            child: Text("   Register   "),
+            child: Text("     Login      "),
             style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(19)),
-                primary: Colors.deepPurpleAccent.shade700),
+                primary: Colors.blue.shade700),
           )
         ],
       ),

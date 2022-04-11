@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_application_1/about.dart';
-import 'package:flutter_application_1/login.dart';
+import 'package:flutter_application_1/about/about.dart';
+import 'package:flutter_application_1/Auth/login.dart';
 import 'package:multilevel_drawer/multilevel_drawer.dart';
 // import 'package:flutter_application_7/authModule/auth_provider.dart';
 // import 'package:flutter_application_7/authModule/login_screen.dart';
