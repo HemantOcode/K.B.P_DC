@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/about/about.dart';
 import 'package:flutter_application_1/home.dart';
@@ -7,35 +9,24 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-const AndroidNotificationChannel channel = AndroidNotificationChannel(
-  "",
-  "",
-  description: "",
-  importance: Importance.high,
-  playSound: true,
-);
-
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
-Future<void> _firebaseMessageBackgroundhandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
+Future<void> backgroundHandler(RemoteMessage message) async {
+  debugPrint(message.notification!.body.toString());
+  debugPrint(message.notification!.title);
 }
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessageBackgroundhandler);
   await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(backgroundHandler);
+  String? fcmToken = await FirebaseMessaging.instance.getToken();
+  debugPrint(fcmToken);
 
-  await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(channel);
-  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-      alert: true, badge: true, sound: true);
-  runApp(KBP());
+  runApp(const KBP());
 }
 
 class KBP extends StatefulWidget {
+  const KBP({Key? key}) : super(key: key);
+
   @override
   State<KBP> createState() => _KBPState();
 }
@@ -44,32 +35,13 @@ class _KBPState extends State<KBP> {
   @override
   void initState() {
     super.initState();
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      RemoteNotification? notification = message.notification;
-      AndroidNotification? android = message.notification?.android;
-      if (notification != null && android != null) {
-        flutterLocalNotificationsPlugin.show(
-            notification.hashCode,
-            notification.title,
-            notification.body,
-            NotificationDetails(
-              android: AndroidNotificationDetails(
-                channel.id,
-                channel.name,
-                color: Colors.blue,
-                playSound: true,
-                icon: '@mipmap/ic_launcher',
-              ),
-            ));
-      }
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return (MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: about(),
-    ));
+      home: login(),
+    );
   }
 }
