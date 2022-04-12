@@ -9,17 +9,28 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+import 'helper/local_notification.dart';
+
+const AndroidNotificationChannel channel = AndroidNotificationChannel(
+  'high_importance_channel', // id
+  'High Importance Notifications', // title
+  importance: Importance.max,
+);
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 Future<void> backgroundHandler(RemoteMessage message) async {
   debugPrint(message.notification!.body.toString());
   debugPrint(message.notification!.title);
 }
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   String? fcmToken = await FirebaseMessaging.instance.getToken();
-  debugPrint(fcmToken);
+  print(fcmToken);
 
   runApp(const KBP());
 }
