@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/about/about.dart';
+import 'package:flutter_application_1/about/intro.dart';
 import 'package:flutter_application_1/home.dart';
 import 'package:flutter_application_1/Auth/register.dart';
 import 'Auth/login.dart';
@@ -23,7 +24,6 @@ Future<void> backgroundHandler(RemoteMessage message) async {
   debugPrint(message.notification!.body.toString());
   debugPrint(message.notification!.title);
 }
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,7 +52,7 @@ class _KBPState extends State<KBP> {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: login(),
+      home: homepage(),
     );
   }
 }

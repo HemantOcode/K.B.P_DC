@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/drawer.dart';
 
-class about extends StatelessWidget {
-  const about({Key? key}) : super(key: key);
+// ignore: camel_case_types
+class intro extends StatelessWidget {
+  const intro({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +11,7 @@ class about extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 14, 7, 75),
-          title: Center(child: Text("ABOUT")),
+          title: Center(child: Text("History / Indroduction")),
         ),
         drawer: drawer(),
         body: SingleChildScrollView(
@@ -29,7 +30,7 @@ class about extends StatelessWidget {
                       decoration: BoxDecoration(
                     color: Color.fromARGB(255, 14, 7, 75),
                   ))),
-              Text("")
+              Text("This is INTRO\n\n\nAnd college History")
             ],
           ),
         ),
