@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/about/about.dart';
+import 'package:flutter_application_1/about/mission.dart';
 import 'package:flutter_application_1/about/intro.dart';
 import 'package:flutter_application_1/home.dart';
 import 'package:flutter_application_1/Auth/register.dart';

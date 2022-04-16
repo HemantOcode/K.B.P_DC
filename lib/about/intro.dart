@@ -30,7 +30,44 @@ class intro extends StatelessWidget {
                       decoration: BoxDecoration(
                     color: Color.fromARGB(255, 14, 7, 75),
                   ))),
-              Text("This is INTRO\n\n\nAnd college History")
+              SizedBox(
+                height: 10,
+              ),
+              Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                color: Colors.blue.shade300,
+                semanticContainer: true,
+                child: Column(children: [
+                  Text(
+                    "ABOUT THE COLLEGE:\n",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                  Text(
+                    "Adarsh Vikas Mandal was founded in the year 1984 by renowned politician & veteran social worker Late Shree B.B. More Sir to cater to the educational needs of socially and economically challenged section of the society living around the area in particular. The institute established Karmaveer Bhaurao Patil Degree College in the year 2009 for providing quality higher education to aspiring students. The institution provides a learning environment and encourages the students to develop a modern outlook towards life. The college offers traditional as well as professional undergraduate courses like Bachelor of Commerce, Bachelor of Arts, Bachelor of Accounting & Finance, Bachelor of Banking & Insurance, and Bachelor of Science in Information Technology.",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )
+                ]),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                color: Colors.blue.shade300,
+                semanticContainer: true,
+                child: Column(children: [
+                  Text(
+                    "OUR EDUCATIONAL FAMILY:\n",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                  Text(
+                    " Bal Vidyamandir Primary School [Marathi & Semi-English Medium]\nBal Vidyamandir Secondary School [Marathi & Semi-English Medium]\nAdarsh English School [Pre Primary, Primary & Secondary]\nKarmaveer Bhaurao Patil Junior College [Arts, Commerce & Science]YCMOU Study Center",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )
+                ]),
+              )
             ],
           ),
         ),

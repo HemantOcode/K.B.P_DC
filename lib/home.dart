@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Auth/register.dart';
+import 'package:flutter_application_1/imgslides.dart';
 import 'drawer.dart';
 import 'about/intro.dart';
 import 'package:multilevel_drawer/multilevel_drawer.dart';
+import 'imgslides.dart';
 
 class homepage extends StatelessWidget {
   const homepage({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class homepage extends StatelessWidget {
           title: Center(child: Text("Home")),
         ),
         drawer: drawer(),
+        body: slideimg(),
       ),
     ));
   }
