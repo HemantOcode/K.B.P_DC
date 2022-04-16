@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/about/contactus.dart';
+import 'package:flutter_application_1/about/infrastructure.dart';
 import 'package:flutter_application_1/about/management.dart';
 import 'package:flutter_application_1/about/mission.dart';
 import 'package:flutter_application_1/Auth/login.dart';
@@ -101,10 +102,11 @@ class _drawerState extends State<drawer> {
                         MaterialPageRoute(builder: (context) => management()));
                   }),
               MLSubmenu(
-                  submenuContent: const Text("Development Committee"),
-                  onClick: () {}),
-              MLSubmenu(
-                  submenuContent: const Text("Infrastructure"), onClick: () {})
+                  submenuContent: const Text("Infrastructure"),
+                  onClick: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => infras()));
+                  })
             ]),
         MLMenuItem(
             content: const Text(

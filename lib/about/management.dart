@@ -34,13 +34,26 @@ class management extends StatelessWidget {
               ),
               Card(
                 shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
                   side: BorderSide(
-                    color: Colors.grey.withOpacity(0.2),
-                    width: 55,
+                    color: Colors.grey.withOpacity(0.5),
                   ),
                 ),
                 semanticContainer: true,
-                child: Text("Shri. Sachin B. More"),
+                child: Padding(
+                  padding: EdgeInsets.all(0),
+                  child: Column(children: [
+                    Text(
+                      "ADARSH VIKAS MANDAL",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Image.asset("assets/man.png")
+                  ]),
+                ),
               ),
             ],
           ),

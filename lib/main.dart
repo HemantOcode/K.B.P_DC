@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/about/infrastructure.dart';
 import 'package:flutter_application_1/about/mission.dart';
 import 'package:flutter_application_1/about/intro.dart';
 import 'package:flutter_application_1/home.dart';
@@ -52,7 +53,7 @@ class _KBPState extends State<KBP> {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: homepage(),
+      home: infras(),
     );
   }
 }
