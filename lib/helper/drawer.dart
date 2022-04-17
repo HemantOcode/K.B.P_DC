@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Acadmics/Acadmics.dart';
 import 'package:flutter_application_1/about/contactus.dart';
 import 'package:flutter_application_1/about/infrastructure.dart';
 import 'package:flutter_application_1/about/management.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_application_1/Auth/login.dart';
 import 'package:flutter_application_1/about/intro.dart';
 import 'package:multilevel_drawer/multilevel_drawer.dart';
 import 'package:flutter_application_1/home.dart';
+import 'package:flutter_application_1/Acadmics/Acadmics.dart';
 // import 'package:flutter_application_7/authModule/auth_provider.dart';
 // import 'package:flutter_application_7/authModule/login_screen.dart';
 // import 'package:localstorage/localstorage.dart';
@@ -68,7 +70,8 @@ class _drawerState extends State<drawer> {
               color: Colors.cyan,
             ),
             onClick: () {
-              const homepage();
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Acadmics()));
             }),
         MLMenuItem(
             content: const Text(

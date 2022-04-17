@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/drawer.dart';
+import 'package:flutter_application_1/helper/drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class contus extends StatelessWidget {
@@ -20,8 +20,8 @@ class contus extends StatelessWidget {
     return (MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 14, 7, 75),
-          title: Center(child: Text("CONTACT US")),
+          backgroundColor: const Color.fromARGB(255, 14, 7, 75),
+          title: const Center(child: const Text("CONTACT US")),
         ),
         drawer: drawer(),
         body: SingleChildScrollView(
@@ -33,71 +33,73 @@ class contus extends StatelessWidget {
                     decoration: BoxDecoration(color: Colors.grey.shade300),
                     child: SafeArea(child: Image.asset('assets/banner.png'))),
               ),
-              SizedBox(
+              const SizedBox(
                   height: 5,
                   width: double.infinity,
-                  child: DecoratedBox(
+                  child: const DecoratedBox(
                       decoration: BoxDecoration(
                     color: Color.fromARGB(255, 14, 7, 75),
                   ))),
-              SizedBox(
+              const SizedBox(
                 height: 18,
               ),
               Card(
                 elevation: 12,
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.black, width: 1),
+                  borderRadius: BorderRadius.circular(15),
+                  side: const BorderSide(color: Colors.black, width: 1),
                 ),
                 color: Colors.grey.shade200,
                 semanticContainer: true,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(padding: const EdgeInsets.all(5)),
-                      Center(
-                        child: Text(
+                      const Padding(padding: EdgeInsets.all(5)),
+                      const Center(
+                        child: const Text(
                           "ADDRESS\n",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                       ),
-                      Padding(padding: const EdgeInsets.all(4)),
-                      Center(
-                        child: Text(
+                      const Padding(padding: EdgeInsets.all(4)),
+                      const Center(
+                        child: const Text(
                           "Address : Adarsh Vikas Mandal’s\nKarmaveer Bhaurao Patil College,\nRoad No, 16V, Near Nehru Nagar,\nBehind Wagale Fire Brigade, Wagale Estate,\nThane 400 604.\nPhone Numbers : 022-2582 7799\nEmail : kbp.degreecollege@yahoo.com\nWeb: https://www.kbpcollegethane.net",
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                     ]),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Card(
                 elevation: 12,
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.black, width: 1),
+                  borderRadius: BorderRadius.circular(15),
+                  side: const BorderSide(color: Colors.black, width: 1),
                 ),
                 color: Colors.grey.shade200,
                 semanticContainer: true,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
-                      Center(
-                          child: Icon(
+                      const Center(
+                          child: const Icon(
                         Icons.location_on,
                         size: 50,
                       )),
-                      Padding(padding: const EdgeInsets.all(5)),
-                      Center(
+                      const Padding(padding: EdgeInsets.all(5)),
+                      const Center(
                         child: Text(
                           "LOCATION\n",
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                       ),
@@ -106,16 +108,16 @@ class contus extends StatelessWidget {
                           onPressed: () {
                             _launchURL();
                           },
-                          child: Text("Get Location"),
+                          child: const Text("Get Location"),
                           style: ElevatedButton.styleFrom(
-                              primary: Color.fromARGB(255, 14, 7, 75),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 29, vertical: 16),
-                              textStyle: TextStyle(
+                              primary: const Color.fromARGB(255, 14, 7, 75),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 29, vertical: 14),
+                              textStyle: const TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.bold)),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       )
                     ]),
