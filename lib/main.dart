@@ -1,12 +1,14 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Auth/providers/auth_provider.dart';
 import 'package:flutter_application_1/about/infrastructure.dart';
 import 'package:flutter_application_1/about/mission.dart';
 import 'package:flutter_application_1/about/intro.dart';
 import 'package:flutter_application_1/home.dart';
 import 'package:flutter_application_1/Auth/register.dart';
-import 'Auth/login.dart';
+import 'package:provider/provider.dart';
+import 'Auth/login_screen.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -31,8 +33,6 @@ Future<void> main() async {
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   String? fcmToken = await FirebaseMessaging.instance.getToken();
-  print(fcmToken);
-
   runApp(const KBP());
 }
 
@@ -51,9 +51,16 @@ class _KBPState extends State<KBP> {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: homepage(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => AuthProvider(),
+        ),
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: LoginScreen(),
+      ),
     );
   }
 }

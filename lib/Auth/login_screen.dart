@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_1/Auth/login_screen.dart';
+import 'package:flutter_application_1/Auth/Home/home_screen.dart';
 import 'package:flutter_application_1/Auth/providers/auth_provider.dart';
-import 'package:flutter_application_1/commanFunction/commanFunctions.dart';
+import 'package:flutter_application_1/Auth/register.dart';
 import 'package:provider/provider.dart';
+import '../commanFunction/commanFunctions.dart';
 import './utilites/constant.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  bool _rememberMe = false;
-  TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   handleInput() async {
@@ -27,11 +25,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
       final result = await Provider.of<AuthProvider>(context, listen: false)
           .registerAndLogin(body: {
-        'name': nameController.text,
         'email': emailController.text,
-        'phone': phoneController.text,
         'password': passwordController.text
-      }, action: "register");
+      }, action: "login");
+
+      if (Provider.of<AuthProvider>(context, listen: false).userModel.role ==
+          "Admin") {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => AdminHomeScreen()),
+            (route) => false);
+      } else {}
     }
   }
 
@@ -51,11 +55,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: TextFormField(
             controller: emailController,
             keyboardType: TextInputType.emailAddress,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
             ),
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
@@ -63,78 +67,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 color: Colors.white,
               ),
               hintText: 'Enter your Email',
-              hintStyle: kHintTextStyle,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildNameTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const Text(
-          'Name',
-          style: kLabelStyle,
-        ),
-        const SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: TextFormField(
-            controller: nameController,
-            keyboardType: TextInputType.text,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.text_fields,
-                color: Colors.white,
-              ),
-              hintText: 'Enter your name',
-              hintStyle: kHintTextStyle,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPhoneNumberTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const Text(
-          'Phone Number',
-          style: kLabelStyle,
-        ),
-        const SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: TextFormField(
-            controller: phoneController,
-            keyboardType: TextInputType.phone,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.phone,
-                color: Colors.white,
-              ),
-              hintText: 'Enter your Phone Number',
               hintStyle: kHintTextStyle,
             ),
           ),
@@ -159,7 +91,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: TextFormField(
             controller: passwordController,
             obscureText: true,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
             ),
@@ -193,40 +125,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Widget _buildRememberMeCheckbox() {
-    return SizedBox(
-      height: 20.0,
-      child: Row(
-        children: <Widget>[
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.white),
-            child: Checkbox(
-              value: _rememberMe,
-              checkColor: Colors.green,
-              activeColor: Colors.white,
-              onChanged: (value) {
-                setState(() {
-                  _rememberMe = value!;
-                });
-              },
-            ),
-          ),
-          Text(
-            'Remember me',
-            style: kLabelStyle,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildCreateAccountBtn() {
+  Widget _buildLoginBtn() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () {
+          print('Login Button Pressed');
           handleInput();
         },
         padding: EdgeInsets.all(15.0),
@@ -235,7 +141,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
         color: Colors.white,
         child: Text(
-          'Create New Account',
+          'LOGIN',
           style: TextStyle(
             color: Color(0xFF527DAA),
             letterSpacing: 1.5,
@@ -248,17 +154,60 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
+  Widget _buildSignInWithText() {
+    return Column(
+      children: <Widget>[
+        Text(
+          '- OR -',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        SizedBox(height: 20.0),
+        Text(
+          'Sign in with',
+          style: kLabelStyle,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSocialBtn(Function onTap, AssetImage logo) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        height: 60.0,
+        width: 60.0,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(0, 2),
+              blurRadius: 6.0,
+            ),
+          ],
+          image: DecorationImage(
+            image: logo,
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildSignupBtn() {
     return GestureDetector(
       onTap: () => Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()),
+          MaterialPageRoute(builder: (context) => const SignUpScreen()),
           (route) => false),
       child: RichText(
         text: const TextSpan(
           children: [
             TextSpan(
-              text: 'Already have an account ',
+              text: 'Don\'t have an Account? ',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.0,
@@ -266,7 +215,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
             TextSpan(
-              text: 'Log-In',
+              text: 'Sign Up',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.0,
@@ -291,7 +240,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Container(
                 height: double.infinity,
                 width: double.infinity,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -319,7 +268,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          'Sign Up',
+                          'Sign In',
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'OpenSans',
@@ -327,24 +276,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 30.0),
-                        _buildNameTF(),
-                        const SizedBox(
-                          height: 30.0,
-                        ),
+                        SizedBox(height: 30.0),
                         _buildEmailTF(),
-                        const SizedBox(
-                          height: 30.0,
-                        ),
-                        _buildPhoneNumberTF(),
-                        const SizedBox(
+                        SizedBox(
                           height: 30.0,
                         ),
                         _buildPasswordTF(),
-                        const SizedBox(
-                          height: 30.0,
-                        ),
-                        _buildCreateAccountBtn(),
+                        _buildLoginBtn(),
                         _buildSignupBtn(),
                       ],
                     ),
