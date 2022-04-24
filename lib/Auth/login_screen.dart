@@ -245,7 +245,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xFF73AEF5),
+                      Color.fromARGB(255, 14, 7, 75),
                       Color(0xFF61A4F1),
                       Color(0xFF478DE0),
                       Color(0xFF398AE5),
@@ -267,6 +267,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
+                        Image.asset(
+                          'assets/banner.png',
+                          fit: BoxFit.cover,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Text(
                           'Sign In',
                           style: TextStyle(

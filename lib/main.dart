@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'Auth/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Auth/providers/auth_provider.dart';
 import 'package:flutter_application_1/about/infrastructure.dart';
@@ -59,7 +59,7 @@ class _KBPState extends State<KBP> {
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginScreen(),
+        home: homepage(),
       ),
     );
   }

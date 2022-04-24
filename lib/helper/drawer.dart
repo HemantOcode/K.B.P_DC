@@ -1,19 +1,20 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Acadmics/Acadmics.dart';
+import 'package:flutter_application_1/Acadmics/BA.dart';
+import 'package:flutter_application_1/Acadmics/Bcom.dart';
+import 'package:flutter_application_1/Acadmics/baf.dart';
+import 'package:flutter_application_1/Acadmics/bbi.dart';
+import 'package:flutter_application_1/Acadmics/bscit.dart';
 import 'package:flutter_application_1/about/contactus.dart';
 import 'package:flutter_application_1/about/infrastructure.dart';
 import 'package:flutter_application_1/about/management.dart';
 import 'package:flutter_application_1/about/mission.dart';
-import 'package:flutter_application_1/Auth/login_screen.dart';
 import 'package:flutter_application_1/about/intro.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:multilevel_drawer/multilevel_drawer.dart';
 import 'package:flutter_application_1/home.dart';
-import 'package:flutter_application_1/Acadmics/Acadmics.dart';
-// import 'package:flutter_application_7/authModule/auth_provider.dart';
-// import 'package:flutter_application_7/authModule/login_screen.dart';
-// import 'package:localstorage/localstorage.dart';
-// import 'package:provider/provider.dart';
-// import '../../us.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class drawer extends StatefulWidget {
   @override
@@ -22,6 +23,33 @@ class drawer extends StatefulWidget {
 
 // ignore: camel_case_types
 class _drawerState extends State<drawer> {
+  _launchyt() async {
+    const url = "https://www.youtube.com/channel/UCRRHATsTDg8pgxPseZO_o1Q";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  _launchig() async {
+    const url = "https://www.instagram.com/kbp_degree_college_thane/";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  _launchfb() async {
+    const url = "https://www.facebook.com/kbpdegreecollegethane";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // final userDetails = Provider.of<Auth>(context).currentUser;
@@ -69,10 +97,39 @@ class _drawerState extends State<drawer> {
               Icons.menu_book,
               color: Colors.cyan,
             ),
-            onClick: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Acadmics()));
-            }),
+            onClick: () {},
+            subMenuItems: [
+              MLSubmenu(
+                  submenuContent: const Text(" B.A"),
+                  onClick: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => Ba()));
+                  }),
+              MLSubmenu(
+                  submenuContent: const Text("B.Sc IT"),
+                  onClick: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => It()));
+                  }),
+              MLSubmenu(
+                  submenuContent: const Text("B.COM"),
+                  onClick: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Bcom()));
+                  }),
+              MLSubmenu(
+                  submenuContent: const Text("B.AF"),
+                  onClick: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Baf()));
+                  }),
+              MLSubmenu(
+                  submenuContent: const Text("B.BI"),
+                  onClick: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Bbi()));
+                  })
+            ]),
         MLMenuItem(
             content: const Text(
               "About Us",
@@ -82,9 +139,7 @@ class _drawerState extends State<drawer> {
               Icons.group,
               color: Colors.white,
             ),
-            onClick: () {
-              // return (const login());
-            },
+            onClick: () {},
             subMenuItems: [
               MLSubmenu(
                   submenuContent: const Text("History / Introduction"),
@@ -124,6 +179,33 @@ class _drawerState extends State<drawer> {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => contus()));
             }),
+        MLMenuItem(
+            content: Row(
+              children: [
+                IconButton(
+                    onPressed: () {
+                      _launchfb();
+                    },
+                    icon: Icon(
+                      Icons.facebook,
+                      color: Colors.blue.shade600,
+                    )),
+                IconButton(
+                    onPressed: () async {
+                      _launchig();
+                    },
+                    icon: Icon(MdiIcons.instagram, color: Colors.white70)),
+                IconButton(
+                    onPressed: () {
+                      _launchyt();
+                    },
+                    icon: Icon(
+                      MdiIcons.youtube,
+                      color: Colors.red,
+                    )),
+              ],
+            ),
+            onClick: () {})
       ],
     ));
   }

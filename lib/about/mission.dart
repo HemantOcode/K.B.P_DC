@@ -58,7 +58,7 @@ class miss_Visi extends StatelessWidget {
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                       ),
-                      Padding(padding: const EdgeInsets.all(4)),
+                      Padding(padding: const EdgeInsets.all(1)),
                       Center(
                         child: Text(
                           "Enrichment of students through quality education\n",
@@ -85,7 +85,7 @@ class miss_Visi extends StatelessWidget {
                         Icons.disc_full_outlined,
                         size: 50,
                       )),
-                      Padding(padding: const EdgeInsets.all(12)),
+                      Padding(padding: const EdgeInsets.all(10)),
                       Center(
                         child: Text(
                           "MISSION\n",
@@ -93,7 +93,7 @@ class miss_Visi extends StatelessWidget {
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                       ),
-                      Padding(padding: const EdgeInsets.all(12)),
+                      Padding(padding: const EdgeInsets.all(8)),
                       Center(
                         child: Text(
                           "Serve diverse community of students with accessible and\n affordable education that enhances the quality of life.\n",

@@ -39,8 +39,9 @@ dependencies:
   firebase_messaging: ^11.2.12
   carousel_slider: ^4.0.0
   url_launcher: ^6.0.20
-  provider:
-  http:
+  provider: ^6.0.2
+  http: ^0.13.4
+  material_design_icons_flutter: ^5.0.6595
 
 dev_dependencies:
   flutter_test:
