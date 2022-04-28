@@ -1,4 +1,7 @@
 import 'dart:developer';
+import 'package:flutter_application_1/addevent.dart';
+import 'package:flutter_application_1/event.dart';
+import 'package:flutter_application_1/addevent.dart';
 import 'Auth/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Auth/providers/auth_provider.dart';
@@ -59,7 +62,7 @@ class _KBPState extends State<KBP> {
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: homepage(),
+        home: Add_Events(),
       ),
     );
   }

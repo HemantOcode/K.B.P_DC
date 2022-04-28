@@ -11,6 +11,7 @@ import 'package:flutter_application_1/about/infrastructure.dart';
 import 'package:flutter_application_1/about/management.dart';
 import 'package:flutter_application_1/about/mission.dart';
 import 'package:flutter_application_1/about/intro.dart';
+import 'package:flutter_application_1/event.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:multilevel_drawer/multilevel_drawer.dart';
 import 'package:flutter_application_1/home.dart';
@@ -60,7 +61,7 @@ class _drawerState extends State<drawer> {
         child: Column(
           children: [
             const SizedBox(
-              height: 8,
+              height: 18,
             ),
             SafeArea(
               child: Image.asset(
@@ -68,16 +69,13 @@ class _drawerState extends State<drawer> {
                 fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(
-              height: 2,
-            )
           ],
         ),
       ),
       children: [
         MLMenuItem(
             content: Text(
-              "Home",
+              " Home",
               style: TextStyle(color: Colors.orange.shade100),
             ),
             leading: Icon(
@@ -89,8 +87,21 @@ class _drawerState extends State<drawer> {
                   context, MaterialPageRoute(builder: (context) => homepage()));
             }),
         MLMenuItem(
+            content: Text(
+              "  Events",
+              style: TextStyle(color: Colors.green),
+            ),
+            leading: Icon(
+              Icons.event_available,
+              color: Colors.green,
+            ),
+            onClick: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => event()));
+            }),
+        MLMenuItem(
             content: const Text(
-              "Acadmics",
+              " Acadmics",
               style: const TextStyle(color: Colors.cyan),
             ),
             leading: const Icon(
@@ -132,7 +143,7 @@ class _drawerState extends State<drawer> {
             ]),
         MLMenuItem(
             content: const Text(
-              "About Us",
+              " About Us",
               style: const TextStyle(color: Colors.white),
             ),
             leading: const Icon(
@@ -168,12 +179,12 @@ class _drawerState extends State<drawer> {
             ]),
         MLMenuItem(
             content: const Text(
-              "Contact US",
-              style: const TextStyle(color: Colors.green),
+              " Contact Us",
+              style: const TextStyle(color: Colors.blue),
             ),
             leading: const Icon(
               Icons.phone,
-              color: Colors.green,
+              color: Colors.blue,
             ),
             onClick: () {
               Navigator.push(
@@ -181,6 +192,7 @@ class _drawerState extends State<drawer> {
             }),
         MLMenuItem(
             content: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
                     onPressed: () {
@@ -204,6 +216,9 @@ class _drawerState extends State<drawer> {
                       color: Colors.red,
                     )),
               ],
+            ),
+            leading: Align(
+              alignment: Alignment.bottomCenter,
             ),
             onClick: () {})
       ],
