@@ -61,8 +61,8 @@ class _KBPState extends State<KBP> {
         ),
       ],
       child: const MaterialApp(
+        home: homepage(),
         debugShowCheckedModeBanner: false,
-        home: Add_Events(),
       ),
     );
   }

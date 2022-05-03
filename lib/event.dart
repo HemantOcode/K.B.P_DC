@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/addevent.dart';
 import 'package:flutter_application_1/helper/drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'addevent.dart';
 
 class event extends StatelessWidget {
   const event({Key? key}) : super(key: key);
@@ -56,6 +58,20 @@ class event extends StatelessWidget {
                                   fontWeight: FontWeight.bold, fontSize: 18),
                             ),
                           ),
+                          Center(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Add_Events()));
+                              },
+                              child: Text("Add Events"),
+                              style: ElevatedButton.styleFrom(
+                                  primary:
+                                      const Color.fromARGB(255, 14, 7, 75)),
+                            ),
+                          )
                         ]),
                   ),
                 ),
