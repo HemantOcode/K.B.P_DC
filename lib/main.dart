@@ -1,22 +1,11 @@
-import 'dart:developer';
-import 'package:flutter_application_1/addevent.dart';
-import 'package:flutter_application_1/event.dart';
-import 'package:flutter_application_1/addevent.dart';
-import 'Auth/register.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Auth/providers/auth_provider.dart';
-import 'package:flutter_application_1/about/infrastructure.dart';
-import 'package:flutter_application_1/about/mission.dart';
-import 'package:flutter_application_1/about/intro.dart';
-import 'package:flutter_application_1/home.dart';
-import 'package:flutter_application_1/Auth/register.dart';
+
 import 'package:provider/provider.dart';
-import 'Auth/login_screen.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-import 'helper/local_notification.dart';
+// import 'helper/local_notification.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'high_importance_channel', // id
