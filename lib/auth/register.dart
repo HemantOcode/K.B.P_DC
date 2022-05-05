@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/auth/login_screen.dart';
 import 'package:flutter_application_1/auth/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
+import '../commanFunction/commanFunctions.dart';
 import './utilites/constant.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -13,7 +15,6 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
-  bool _rememberMe = false;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
@@ -21,7 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   handleInput() async {
     if (_formKey.currentState!.validate()) {
-      showSnackBar(context: context);
+      // showSnackBar(context: context);
 
       final result = await Provider.of<AuthProvider>(context, listen: false)
           .registerAndLogin(body: {
@@ -30,6 +31,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
         'phone': phoneController.text,
         'password': passwordController.text
       }, action: "register");
+
+      if (result['success']) {
+        successShowSnackBar(context: context, msg: result['message']);
+      }
     }
   }
 
@@ -85,11 +90,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: TextFormField(
             controller: nameController,
             keyboardType: TextInputType.text,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
             ),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
@@ -121,11 +126,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: TextFormField(
             controller: phoneController,
             keyboardType: TextInputType.phone,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
             ),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
@@ -161,7 +166,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               color: Colors.white,
               fontFamily: 'OpenSans',
             ),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
@@ -177,62 +182,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Widget _buildForgotPasswordBtn() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: FlatButton(
-        onPressed: () => print('Forgot Password Button Pressed'),
-        padding: const EdgeInsets.only(right: 0.0),
-        child: const Text(
-          'Forgot Password?',
-          style: kLabelStyle,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildRememberMeCheckbox() {
-    return SizedBox(
-      height: 20.0,
-      child: Row(
-        children: <Widget>[
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.white),
-            child: Checkbox(
-              value: _rememberMe,
-              checkColor: Colors.green,
-              activeColor: Colors.white,
-              onChanged: (value) {
-                setState(() {
-                  _rememberMe = value!;
-                });
-              },
-            ),
-          ),
-          Text(
-            'Remember me',
-            style: kLabelStyle,
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildCreateAccountBtn() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 25.0),
+      padding: const EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () {
           handleInput();
         },
-        padding: EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
         color: Colors.white,
-        child: Text(
+        child: const Text(
           'Create New Account',
           style: TextStyle(
             color: Color(0xFF527DAA),
@@ -303,11 +267,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 height: double.infinity,
                 child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 40.0,
                     vertical: 120.0,
                   ),

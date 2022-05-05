@@ -28,7 +28,7 @@ class AuthProvider with ChangeNotifier {
           phone: response['result']['phone'],
           id: response['result']['_id']);
       print(response);
-      return response['success'];
+      return response;
     } catch (e) {
       rethrow;
     }

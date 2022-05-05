@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_application_1/Auth/providers/auth_provider.dart';
+import 'package:flutter_application_1/auth/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-
-// import 'helper/local_notification.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'high_importance_channel', // id
@@ -49,8 +48,9 @@ class _KBPState extends State<KBP> {
           create: (_) => AuthProvider(),
         ),
       ],
-      child: const MaterialApp(
-        home: homepage(),
+      child: MaterialApp(
+        theme: ThemeData(primaryColor: Colors.purple),
+        home: SplashScreen(),
         debugShowCheckedModeBanner: false,
       ),
     );
