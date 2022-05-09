@@ -37,3 +37,14 @@ errorShowSnackBar({
 
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
+
+pushAndRemoveUntil({required BuildContext context, required Widget widget}) =>
+    // Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
+    Navigator.pushAndRemoveUntil(context,
+        MaterialPageRoute(builder: (context) => widget), (route) => false);
+
+differnceBetweenTwoDates(DateTime date1, DateTime date2) {
+  final Duration differnce = date1.difference(date2);
+
+  return differnce.toString().split('.').first.padLeft(8, "0");
+}

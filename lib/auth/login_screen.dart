@@ -4,7 +4,6 @@ import 'package:flutter_application_1/Auth/Home/home_screen.dart';
 import 'package:flutter_application_1/Auth/register.dart';
 import 'package:flutter_application_1/auth/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
-import '../commanFunction/commanFunctions.dart';
 import './utilites/constant.dart';
 
 class LoginScreen extends StatefulWidget {

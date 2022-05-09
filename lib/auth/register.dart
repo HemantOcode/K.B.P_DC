@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/auth/login_screen.dart';
 import 'package:flutter_application_1/auth/providers/auth_provider.dart';
+import 'package:flutter_application_1/commanFunction/comman_functions.dart';
 import 'package:provider/provider.dart';
-import '../commanFunction/commanFunctions.dart';
 import './utilites/constant.dart';
 
 class SignUpScreen extends StatefulWidget {

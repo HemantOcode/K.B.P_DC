@@ -2,22 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/commanWidget/app_bar.dart';
 import 'package:flutter_application_1/home/widgets/home_app_drawer.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class AcadmicsScreen extends StatefulWidget {
+  const AcadmicsScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<AcadmicsScreen> createState() => _AcadmicsScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _AcadmicsScreenState extends State<AcadmicsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title:'KDC ' ),
+      appBar: const CustomAppBar(title: 'Acadmics'),
       drawer: const HomeScreenAppDrawer(),
-      body: Column(
-        children: [],
-      ),
     );
   }
 }

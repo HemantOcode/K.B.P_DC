@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Auth/providers/auth_provider.dart';
 import 'package:flutter_application_1/auth/splash_screen.dart';
+import 'package:flutter_application_1/home/events/event_provider.dart';
+import 'package:flutter_application_1/home/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -47,10 +49,27 @@ class _KBPState extends State<KBP> {
         ChangeNotifierProvider(
           create: (_) => AuthProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => EventProvider(),
+        ),
       ],
       child: MaterialApp(
-        theme: ThemeData(primaryColor: Colors.purple),
-        home: SplashScreen(),
+        theme: ThemeData(
+          primaryColor: Colors.purple,
+          // colorScheme: const ColorScheme(
+          //     brightness: Brightness.dark,
+          //     primary: Colors.purple,
+          //     onPrimary: Colors.blue,
+          //     secondary: Colors.cyan,
+          //     onSecondary: Colors.deepPurple,
+          //     error: Colors.red,
+          //     onError: Colors.redAccent,
+          //     background: Colors.white,
+          //     onBackground: Colors.blueGrey,
+          //     surface: Colors.lightBlue,
+          //     onSurface: Colors.purpleAccent),
+        ),
+        home: HomeScreen(),
         debugShowCheckedModeBanner: false,
       ),
     );
