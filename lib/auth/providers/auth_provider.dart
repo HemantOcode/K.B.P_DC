@@ -18,7 +18,7 @@ class AuthProvider with ChangeNotifier {
       url = '${webApi['domain']}${endPoints['loginuser']}';
     }
     try {
-      final response = await HttpRequest().postRequest(url: url, body: body);
+      final response = await postRequest(url: url, body: body);
       accessToken = response['accessToken'];
       userModel = UserModel(
           email: response['result']['email'],

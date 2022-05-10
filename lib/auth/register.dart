@@ -33,7 +33,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       }, action: "register");
 
       if (result['success']) {
-        successShowSnackBar(context: context, msg: result['message']);
+        successSnackbar(context, result['message']);
       }
     }
   }

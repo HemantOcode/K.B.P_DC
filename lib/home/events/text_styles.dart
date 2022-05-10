@@ -35,3 +35,13 @@ TextStyle getEventSubHeaderBoldTextStyle(
         fontWeight: FontWeight.w700,
         letterSpacing: .56);
 
+
+
+TextStyle getTitleText(
+        {required double ts, Color color = Colors.black}) =>
+    GoogleFonts.inter(
+        fontSize: ts * headline5,
+        color: color,
+        fontWeight: FontWeight.w600,
+        letterSpacing: .56);
+

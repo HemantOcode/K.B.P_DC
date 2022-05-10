@@ -2,13 +2,15 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-class HttpRequest {
-  static const header = {"Content-Type": "application/json"};
-
   postRequest({
     required String url,
-    required Map<String, String> body,
+    String token = '',
+    required Map<String, dynamic> body,
   }) async {
+    final header = {
+      "Content-Type": "application/json",
+      'Authorization': 'Barer $token'
+    };
     try {
       final response = await http.post(Uri.parse(url),
           headers: header, body: json.encode(body));
@@ -18,4 +20,4 @@ class HttpRequest {
       rethrow;
     }
   }
-}
+

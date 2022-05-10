@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/home/events/event_modal.dart';
 import 'package:flutter_application_1/home/events/widget/add_new_event_bottom_sheet.dart';
 import 'package:flutter_application_1/home/events/widget/event_details_sheet.dart';
-import 'package:flutter_application_1/text_styles.dart';
+import 'package:flutter_application_1/home/events/text_styles.dart';
 import 'package:intl/intl.dart';
 
 class EventWidget extends StatelessWidget {
