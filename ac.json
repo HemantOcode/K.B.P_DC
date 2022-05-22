@@ -1,0 +1,268 @@
+[
+    {
+        "name": "Bacholar In Science (Information Technology)",
+        "shortForm": "BSCIT",
+        "decription": "It's a 3 years full time undergraduate course, affiliated to University of Mumbai",
+        "Duration": "3 Years (6 Semester)",
+        "Elgibility": "A candidate for being eligible for admission to this course shall have passed HSC Exam or equivalent exam by securing not less than 35% marks.(Mathematics subject is compulsory for HSC)Student passing an exam equivalent to HSC Board, Mumbai & Inter-Mediate (Arts / Commerce / science) of Mumbai University or from other state & immigrating from other Universities, Boards & Seeking admission to the first year, will be admitted if he/she produce a valid (Provisional Eligibility Certificate) issued by Mumbai University for the current academic year and for the desired course. Such students should submit migration certificate, Statement of Marks & Passing Certificate along with true copies within two months from the date of admission. If student fails to do so, admission is liable to be cancelled. Every candidate admitted to the degree course in the affiliated college shall have register with the Mumbai University.",
+        "objective": "To main objectives is to provide basic inputs in various aspects & board understanding of IT and Management of IT. To cater to the needs of the business by bridging the gap between managerial practices and Information Technology.To produce employable graduate in Information Technology which will enable the industry to grow and he graduates to become successful in the field of Information Technology.",
+        "totalIntake": 60,
+        "semesters": [
+            [
+                "Impertive Programming",
+                "Digital Electronics",
+                "Operating System",
+                "Discrete Mathematics",
+                "Commnications Skills"
+            ],
+            [
+            
+                "Object oriented programming",
+                "Microprocessor Architecture",
+                "Web Programming",
+                "Numerical and Statistical Methods",
+                "Green Computing"
+            ],
+            [   
+                "Python Programming",
+                "Data Structures",
+                "Computer Networks",
+                "Database Management Systems",
+                "Applied Mathematics"
+            ], 
+        [
+            "Core Java",
+            "Introduction to Embedded Systems",
+            "Computer Oriented Statistical Techniques",
+            "Software Engineering",
+            "Computer Graphics and Animation"
+        ],
+        [
+            "Software Project Management",
+            "Internet of Things", 
+            "Artificial Intelligence",
+            "Linex System Administration",
+            "Enterprise Java"
+        ]
+        ]
+    },
+    {
+        "name": "Bachelor of Arts",
+        "shortForm": "B.A",
+        "decription": "It's a 3 years full time undergraduate course, affiliated to University of Mumbai",
+        "Duration": "3 Years (6 Semester)",
+        "Elgibility": null,
+        "objective": null,
+        "totalIntake": 120,
+        "semesters": [
+            [
+                "Commnuciation Skills",
+                "Marithi",
+                "Foundation Course",
+                "History -1",
+                "Sociology -1",
+                "Hindi (Optional)"
+            ],
+            [
+                "Foundation Course",
+                "History -2 & 3",
+                "Sociology -1",
+                "Sociology -2 & 3",
+                "Mass Communication",
+                "Hindi 2 & 3"
+            ],
+            [
+                "History -3 papers each",
+                "Sociology -3 papers each"
+            ]
+        ]
+    },{
+        "name": "Bachelor of Commerce",
+        "shortForm": "B.Com",
+        "decription": "It's a 3 years full time undergraduate course, affiliated to University of Mumbai. This course aims towards making the student well prepared to sustain as a corporate employee or as an entrepreneur. The student has adequate knowledge of adapting to the changes in the flexible business world, can focus internationally and has an in-depth understanding of the business world's market-relevant aspects.",
+        "Duration": "3 Years (6 Semester)",
+        "Elgibility": null,
+        "objective": null,
+        "totalIntake": 120,
+        "semesters": [
+            [
+                "Environment and Management of Financial Services",
+                "Principles of Management",
+                "Financial Accounting I",
+                "Business Communication I",
+                "Foundation Course - I",
+                "Business Economics I",
+                "Quantitative Methods I"
+            ],
+            [
+                "Principles and Practices of Banking & Insurance",
+                "Business Law",
+                "Financial Accounting II",
+                "Business Communication II",
+                "Foundation Course - II",
+                "Organisational Behaviour",
+                "Quantitative Methods II"
+            ],
+            [
+                "Financial Management - I",
+                "Organisational Behaviour",
+                "Management Accounting",
+                "Information Technology in Banking and Insurance - I",
+                "Foundation Course - An overview of Banking Sector",
+                "Financial Markets",
+                "Direct Taxation"
+            ],
+            [
+                "Financial Management - II",
+                "Cost Accounting",
+                "Entrepreneurship Management",
+                "Information Technology in Banking and Insurance - II",
+                "Foundation Course - An overview of Banking Sector",
+                "Corporate and Securities Law",
+                "Business Economics - II"
+            ],
+            [
+                "International Banking and Finance",
+                "Research Methodology",
+                "Financial Reporting & Analysis (Corporate Banking & Insurance)",
+                "Auditing - I",
+                "Strategic Management",
+                "Financial services Management"
+                
+            ],
+            [
+                "Central Banking",
+                "Project Work In Banking & Insurance",
+                "Security analysis and Portfolio Manangement",
+                "Auditing - II",
+                "Human Resource Managenent",
+                "Turnaround Management"
+            ]
+        ]
+    },{
+        "name": "B.COM (Accounting & Finance)",
+        "shortForm": "B.AF",
+        "decription": "This is an integrated three year degree course divided into six semesters introduced & designed by Mumbai University.",
+        "Duration": "3 Years (6 Semesters)",
+        "Elgibility": "A candidate for being eligible for admission to this course shall have passed HSC Exam or equivalent exam by securing not less than 35% marks at first attempt. Student passing an exam equivalent to HSC Board, Mumbai & Inter-Mediate (Arts / Commerce / science) of Mumbai University or from other state & immigrating from other Universities, Boards & Seeking admission to the first year, will be admitted if he/she produce a valid (Provisional EligibilityCertificate) issued by Mumbai University for the current academic year and for the desired course.Such students should submit migration certificate, Statement of Marks & Passing Certificate along with true copies within two months from the date of admission. If student fails to do so, admission is liable to be cancelled.",
+        "objective": "To create for the students of Mumbai University an additional avenue of self employment and also to benefit the industry by providing them with suitable trained persons in the field of To provide students with pragmatic knowledge in the field of Accounting & Finance. To prepare student to exploit opportunities, being newly created in the Accounting & Finance profession. To give an adequate exposure to operational environment in the field of Accounting & Finance. To include training & practical approach by using modern technologies among the students in the field of Accounting & Finance.",
+        "totalIntake": 120,
+        "semesters": [
+            [
+                "Financial Accounting - I",
+                "Cost Accounting - I",
+                "Financial Management",
+                "Business Communication - I",
+                "Foundation Course - I",
+                "Business Environment",
+                "Business Economics"   
+            ],
+            [
+                "Financial Accounting - II",
+                "Auditing",
+                "Taxation - I",
+                "Business Communication II",
+                "Foundation Course -II",
+                "Business Law - I",
+                "Business Mathematics"
+            ],
+            [   "Financial Accounting (Special Accounting Areas) III",
+                "Cost Accounting (Methods of Costing) II",
+                "Taxation II (Direct Taxes Paper I)",
+                "Information Technology in Accountancy I",
+                "Business Law - II",
+                "Foundation Course in Commerce (Financial Market Operations) - III",
+                "Business Economics II"
+            ],
+            [
+                "Financial Accounting - IV",
+                "Information Technology in Accountancy",
+                "Management Accounting",
+                "Business Law",
+                "Taxation v",
+                "(Indirect Taxes-III)",
+                "Foundation Course in Management (Introduction to Management) - IV",
+                "Research Methodology in Accounting and Finance"
+            ],
+            [
+                "Financial Accounting - V",
+                "Financial Accounting - VI",
+                "Cost Accounting - III",
+                "Financial Management - II",
+                "Taxation - IV (Indirect Taxes - II)",
+                "Management -II (Management Applications)"
+            ],
+            [
+                "Financial Accounting - VII",
+                "Project Work",
+                "Cost Accounting - IV",
+                "Financial Management - III",
+                "Taxation - V (Indirect Taxes- III)",
+                "Economics Paper - III"
+            ]
+        ]
+    },{
+        "name": "Bachelor of Commerce (Banking & Insurance)",
+        "shortForm": "B.BI",
+        "decription": "The degree shall be titled as Bachelor of Commerce (Banking and Insurance) Objectives of the degree: To create for the students of University of Mumbai an additional avenue of self employment and also to benefit Banks, Insurance Companies and Industries by providing them with suitable trained persons in the field of Banking and Insurance. To prepare student to exploit opportunities, being newly created in the field of Banking and Insurance due to Globalization, Privatization and Liberalization. To provide adequate basic understanding about the. Banking, Insurance and other financial services among the students. To give an adequate exposure to operational environment in the field of Banking, Insurance and other related financial services. To inculcate training and practical approach among the students by using modern technologies in the field of Banking, Insurance etc.",
+        "Duration": "3 Years (6 Semester)",
+        "Elgibility": "A candidate for being eligible for admission to this course shall have passed HSC Exam or equivalent exam by securing not less than 35% marks at first attempt. The course shall be full time course. The duration of the course shall be six semesters spread over three years. ",
+        "objective": null,
+        "totalIntake": 60,
+        "semesters": [
+            [
+                "Environment and Management of Financial Services",
+                "Principles of Management",
+                "Financial Accounting I",
+                "Business Communication I",
+                "Foundation Course - I",
+                "Business Economics I",
+                "Quantitative Methods I"
+            ],
+            [
+                "Principles and Practices of Banking & Insurance",
+                "Business Law",
+                "Financial Accounting II",
+                "Business Communication II",
+                "Foundation Course - II",
+                "Organisational Behaviour",
+                "Quantitative Methods II"
+            ],
+            [
+                "Financial Management - I",
+                "Organisational Behaviour",
+                "Management Accounting",
+                "Information Technology in Banking and Insurance - I",
+                "Foundation Course - An overview of Banking Sector",
+                "Financial Markets",
+                "Direct Taxation"
+            ],
+            [
+                "Financial Management - II",
+                "Cost Accounting",
+                "Entrepreneurship Management",
+                "Information Technology in Banking and Insurance - II",
+                "Foundation Course - An overview of Banking Sector",
+                "Corporate and Securities Law",
+                "Business Economics - II"
+            ],
+            [
+                "International Banking and Finance",
+                "Research Methodology",
+                "Financial Reporting & Analysis (Corporate Banking & Insurance)",
+                "Auditing - I",
+                "Strategic Management",
+                "Financial services Management"
+                
+            ],
+            [
+                "Central Banking",
+                "Project Work In Banking & Insurance",
+                "Security analysis and Portfolio Manangement",
+                "Auditing - II",
+                "Human Resource Managenent",
+                "Turnaround Management"
+            ]
+        ]
+    }
+]
