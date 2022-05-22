@@ -65,7 +65,7 @@ class EventWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Icon(
-                        Icons.calendar_month_rounded,
+                        Icons.calendar_view_month_rounded,
                         color: Color(0xff17a1a2),
                         size: 18,
                       ),
