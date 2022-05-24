@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Auth/providers/auth_provider.dart';
 import 'package:flutter_application_1/auth/splash_screen.dart';
+import 'package:flutter_application_1/home/acadmics/acadmic_provider.dart';
 import 'package:flutter_application_1/home/events/event_provider.dart';
 import 'package:flutter_application_1/home/home_screen.dart';
 import 'package:provider/provider.dart';
@@ -52,6 +53,10 @@ class _KBPState extends State<KBP> {
         ChangeNotifierProvider(
           create: (_) => EventProvider(),
         ),
+  ChangeNotifierProvider(
+          create: (_) => AcadmicProvider(),
+        ),
+        // AcadmicProvider
       ],
       child: MaterialApp(
         theme: ThemeData(
