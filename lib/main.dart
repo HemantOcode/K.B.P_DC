@@ -53,7 +53,7 @@ class _KBPState extends State<KBP> {
         ChangeNotifierProvider(
           create: (_) => EventProvider(),
         ),
-  ChangeNotifierProvider(
+        ChangeNotifierProvider(
           create: (_) => AcadmicProvider(),
         ),
         // AcadmicProvider

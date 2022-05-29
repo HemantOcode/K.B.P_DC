@@ -4,11 +4,10 @@ import 'package:flutter_application_1/commanFunction/http_request.dart';
 import '../../api.dart';
 import 'acadmic_model.dart';
 
-class AcadmicProvider with ChangeNotifier{
-  
- List <AcadmicModal> acadmics= [];
+class AcadmicProvider with ChangeNotifier {
+  List<AcadmicModal> acadmics = [];
 
- fetchAcadmics() async {
+  fetchAcadmics() async {
     try {
       print('object');
       acadmics = [];
@@ -16,9 +15,14 @@ class AcadmicProvider with ChangeNotifier{
           url: '${webApi['domain']}${endPoints['fetchAcadmics']}', body: {});
 
       response['result'].forEach((acad) {
-        acadmics.add(
-          AcadmicModal(description: acad['description'] , eligibility: acad['eligibility'], name: acad['name'], objective: acad['objective'], semesters: acad['semesters'], shortForm: acad['shortForm'], totalIntake: acad['totalIntake'])
-        );
+        acadmics.add(AcadmicModal(
+            description: acad['description'] ?? '',
+            eligibility: acad['eligibility'] ?? '',
+            name: acad['name'] ?? '',
+            objective: acad['objective'] ?? '',
+            semesters: acad['semesters'] ?? [],
+            shortForm: acad['shortForm'] ?? '',
+            totalIntake: acad['totalIntake'].toString()));
       });
       notifyListeners();
       return (response);
@@ -26,7 +30,4 @@ class AcadmicProvider with ChangeNotifier{
       rethrow;
     }
   }
-
- 
-
 }

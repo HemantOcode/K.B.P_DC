@@ -5,6 +5,7 @@ class UserModel {
   final String email;
   final String phone;
   final String id;
+  final String? std;
 
   UserModel(
       {required this.email,
@@ -12,5 +13,6 @@ class UserModel {
       required this.gender,
       required this.role,
       required this.phone,
-      required this.id});
+      required this.id,
+      this.std});
 }

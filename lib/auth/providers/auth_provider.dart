@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_application_1/Auth/model/user_model.dart';
 import 'package:flutter_application_1/api.dart';
+import 'package:flutter_application_1/auth/model/user_model.dart';
 import 'package:flutter_application_1/commanFunction/http_request.dart';
 
 class AuthProvider with ChangeNotifier {
   late UserModel userModel;
   late String accessToken;
-
+  List<UserModel> students = [];
   registerAndLogin(
       {required Map<String, String> body, required String action}) async {
     String url = '';
