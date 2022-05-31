@@ -33,4 +33,54 @@ class AuthProvider with ChangeNotifier {
       rethrow;
     }
   }
+
+
+  fetchStudents(){
+
+
+try{
+
+
+   final  url = '${webApi['domain']}${endPoints['fetchStudents']}';
+      final response = await postRequest(url: url, body: body);
+
+      if (response['success']){
+
+          
+        response['result'].forEach
+        ((student){
+
+               students.add(UserModel(
+                 _id:student['_id'],
+                 name:student['name'],
+                 gender:student['gender'],
+                 role:student['role'],
+                 phone:student['phone'],
+                 email:student['email'],
+                 std:student['std'],
+
+
+
+               ));
+
+        });
+      notifyListeners();
+      
+
+
+}catch(error){
+
+
+  rethrow;
+
+}
+      }
+
+
+
+   
+
+  }
+
+
 }

@@ -23,3 +23,17 @@ class _StudentScreenState extends State<StudentScreen> {
     );
   }
 }
+
+
+class StudentListTiles extends StatelessWidget {
+  const StudentListTiles({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      
+    );
+  }
+}
+
+
