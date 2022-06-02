@@ -33,9 +33,9 @@ class _AcadmicsScreenState extends State<AcadmicsScreen> {
 
   @override
   void initState() {
-    super.initState();
-
+    print("object hello");
     myInit();
+    super.initState();
   }
 
   @override
@@ -46,7 +46,10 @@ class _AcadmicsScreenState extends State<AcadmicsScreen> {
     return Scaffold(
       appBar: CustomAppBar(title: 'Acadmics'),
       drawer: HomeScreenAppDrawer(),
-      body: ListView.builder(
+      body: ListView.separated(
+        separatorBuilder: ((context, index) => SizedBox(
+              height: dW * 0.025,
+            )),
         padding:
             EdgeInsets.symmetric(horizontal: dW * 0.02, vertical: dW * 0.02),
         itemBuilder: (context, index) => Card(
@@ -56,8 +59,8 @@ class _AcadmicsScreenState extends State<AcadmicsScreen> {
             leading: SizedBox(
                 height: dW * 0.05,
                 width: dW * 0.05,
-                child: Image.asset(
-                  'assets/png/course.png',
+                child: Image.network(
+                  acadList[index].image,
                   fit: BoxFit.fill,
                 )),
             title: Text(

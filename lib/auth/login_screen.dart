@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_application_1/Auth/Home/home_screen.dart';
 import 'package:flutter_application_1/Auth/register.dart';
 import 'package:flutter_application_1/auth/providers/auth_provider.dart';
+import 'package:flutter_application_1/home/home_screen.dart';
 import 'package:provider/provider.dart';
+import '../commanFunction/comman_functions.dart';
 import './utilites/constant.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -26,13 +28,27 @@ class _LoginScreenState extends State<LoginScreen> {
         'password': passwordController.text
       }, action: "login");
 
+      if (result['success']) {
+        successSnackbar(context, result['message']);
+      } else {
+        errorSnackbar(context, result['message']);
+        return;
+      }
+
       if (Provider.of<AuthProvider>(context, listen: false).userModel.role ==
           "Admin") {
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => AdminHomeScreen()),
             (route) => false);
-      } else {}
+      }
+      if (Provider.of<AuthProvider>(context, listen: false).userModel.role ==
+          "Student") {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+            (route) => false);
+      }
     }
   }
 
@@ -124,6 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildLoginBtn() {
     return Container(
+      margin: EdgeInsets.symmetric(vertical: 25),
       padding: EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
       child: RaisedButton(
@@ -187,18 +204,18 @@ class _LoginScreenState extends State<LoginScreen> {
             TextSpan(
               text: 'Don\'t have an Account? ',
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.w400,
-              ),
+                  color: const Color(0xFF6CA8F1),
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 1.2),
             ),
             TextSpan(
               text: 'Sign Up',
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
+                  color: Color(0xFF6CA8F1),
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1),
             ),
           ],
         ),
@@ -208,6 +225,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final double dW = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -227,28 +246,33 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Form(
                     key: _formKey,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Image.asset(
                           'assets/banner.png',
                           fit: BoxFit.cover,
                         ),
                         SizedBox(
-                          height: 10,
+                          height: dW * 0.2,
                         ),
-                        Text(
-                          'Sign In',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'OpenSans',
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold,
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          child: const Text(
+                            'Sign In',
+                            style: TextStyle(
+                              color: Color(0xFF6CA8F1),
+                              fontFamily: 'OpenSans',
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                        SizedBox(height: 30.0),
+                        SizedBox(
+                          height: dW * 0.05,
+                        ),
                         _buildEmailTF(),
                         SizedBox(
-                          height: 30.0,
+                          height: dW * 0.02,
                         ),
                         _buildPasswordTF(),
                         _buildLoginBtn(),

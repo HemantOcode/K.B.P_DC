@@ -4,6 +4,7 @@ class AcadmicModal {
   final String description;
   final String eligibility;
   final String objective;
+  final String image;
 
   final String totalIntake;
   final List semesters;
@@ -15,5 +16,6 @@ class AcadmicModal {
       required this.objective,
       required this.semesters,
       required this.shortForm,
+      required this.image,
       required this.totalIntake});
 }

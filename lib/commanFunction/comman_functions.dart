@@ -13,7 +13,7 @@ successSnackbar(BuildContext context, String msg, [int duration = 2]) {
     duration: Duration(seconds: duration),
     margin: EdgeInsets.only(
         // bottom: 20,
-        bottom: MediaQuery.of(context).size.height - 60,
+        bottom: MediaQuery.of(context).size.height - 100,
         right: 20,
         left: 20),
   ));
@@ -32,7 +32,7 @@ errorSnackbar(BuildContext context, String msg, [int duration = 2]) {
     duration: Duration(seconds: duration),
     margin: EdgeInsets.only(
         // bottom: 10,
-        bottom: MediaQuery.of(context).size.height - 60,
+        bottom: MediaQuery.of(context).size.height - 100,
         right: 20,
         left: 20),
   ));

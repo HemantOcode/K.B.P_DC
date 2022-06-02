@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/auth/model/user_model.dart';
+import 'package:flutter_application_1/auth/providers/auth_provider.dart';
 import 'package:flutter_application_1/commanWidget/app_bar.dart';
 import 'package:flutter_application_1/home/events/event_modal.dart';
 import 'package:flutter_application_1/home/events/event_provider.dart';
@@ -33,24 +35,36 @@ class _EventScreenState extends State<EventScreen> {
     }
   }
 
-
-
-
-  haveOnGoingEvents (List<EventModal> events){
-   return events.where((element) => DateTime.now().isAfter(element.startDate) &&
-        DateTime.now().isBefore(element.endDate)).toList().isEmpty?false:true;
+  haveOnGoingEvents(List<EventModal> events) {
+    return events
+            .where((element) =>
+                DateTime.now().isAfter(element.startDate) &&
+                DateTime.now().isBefore(element.endDate))
+            .toList()
+            .isEmpty
+        ? false
+        : true;
   }
 
-  haveUpCommingEvents(List<EventModal> events){
-   return events.where((element) =>DateTime.now().isBefore(element.startDate)).toList().isEmpty?false:true;
+  haveUpCommingEvents(List<EventModal> events) {
+    return events
+            .where((element) => DateTime.now().isBefore(element.startDate))
+            .toList()
+            .isEmpty
+        ? false
+        : true;
   }
 
-
- haveFinishedEvents(List<EventModal> events){
-   return events.where((element) =>DateTime.now().isAfter(element.startDate) &&
-        DateTime.now().isAfter(element.endDate)).toList().isEmpty?false:true;
+  haveFinishedEvents(List<EventModal> events) {
+    return events
+            .where((element) =>
+                DateTime.now().isAfter(element.startDate) &&
+                DateTime.now().isAfter(element.endDate))
+            .toList()
+            .isEmpty
+        ? false
+        : true;
   }
-
 
   Widget getOnGoingEvents(EventModal event) {
     if (DateTime.now().isAfter(event.startDate) &&
@@ -84,6 +98,7 @@ class _EventScreenState extends State<EventScreen> {
   @override
   Widget build(BuildContext context) {
     final List<EventModal> events = Provider.of<EventProvider>(context).events;
+    final UserModel user = Provider.of<AuthProvider>(context).userModel;
     final dW = MediaQuery.of(context).size.width;
     return DefaultTabController(
       length: 3,
@@ -143,54 +158,68 @@ class _EventScreenState extends State<EventScreen> {
                 child: CircularProgressIndicator(),
               )
             : TabBarView(children: [
-             haveOnGoingEvents(events) ?  ListView.separated(
-                  physics: const BouncingScrollPhysics(),
-                  padding: EdgeInsets.only(top: 20),
-                  itemCount: events.length,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      SizedBox(
-                    height: dW * 0.05,
-                  ),
-                  itemBuilder: (BuildContext context, int index) =>
-                      getOnGoingEvents(events[index]),
-                ) : Center(child: Text('No Ongoing Events'),),
-                haveUpCommingEvents(events)?ListView.separated(
-                  physics: const BouncingScrollPhysics(),
-                  padding: EdgeInsets.only(top: 20),
-                  itemCount: events.length,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      SizedBox(
-                    height: dW * 0.05,
-                  ),
-                  itemBuilder: (BuildContext context, int index) =>
-                      getUpCommingEvents(events[index]),
-                ):Center(child: Text('No Up-Comming Events'),),
-               haveFinishedEvents(events)? ListView.separated(
-                  physics: const BouncingScrollPhysics(),
-                  padding: EdgeInsets.only(top: 20),
-                  itemCount: events.length,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      SizedBox(
-                    height: dW * 0.05,
-                  ),
-                  itemBuilder: (BuildContext context, int index) =>
-                      getFinisedEvents(events[index]),
-                ):Center(child: Text('No Finised Events'),),
+                haveOnGoingEvents(events)
+                    ? ListView.separated(
+                        physics: const BouncingScrollPhysics(),
+                        padding: EdgeInsets.only(top: 20),
+                        itemCount: events.length,
+                        separatorBuilder: (BuildContext context, int index) =>
+                            SizedBox(
+                          height: dW * 0.05,
+                        ),
+                        itemBuilder: (BuildContext context, int index) =>
+                            getOnGoingEvents(events[index]),
+                      )
+                    : Center(
+                        child: Text('No Ongoing Events'),
+                      ),
+                haveUpCommingEvents(events)
+                    ? ListView.separated(
+                        physics: const BouncingScrollPhysics(),
+                        padding: EdgeInsets.only(top: 20),
+                        itemCount: events.length,
+                        separatorBuilder: (BuildContext context, int index) =>
+                            SizedBox(
+                          height: dW * 0.05,
+                        ),
+                        itemBuilder: (BuildContext context, int index) =>
+                            getUpCommingEvents(events[index]),
+                      )
+                    : Center(
+                        child: Text('No Up-Comming Events'),
+                      ),
+                haveFinishedEvents(events)
+                    ? ListView.separated(
+                        physics: const BouncingScrollPhysics(),
+                        padding: EdgeInsets.only(top: 20),
+                        itemCount: events.length,
+                        separatorBuilder: (BuildContext context, int index) =>
+                            SizedBox(
+                          height: dW * 0.05,
+                        ),
+                        itemBuilder: (BuildContext context, int index) =>
+                            getFinisedEvents(events[index]),
+                      )
+                    : Center(
+                        child: Text('No Finised Events'),
+                      ),
               ]),
-        floatingActionButton: Container(
-          child: FloatingActionButton.extended(
-            onPressed: () {
-              showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  enableDrag: true,
-                  builder: (context) => AddEventBottomSheet());
-            },
-            label: Text('Add new event'),
-            icon: Icon(Icons.add),
-          ),
-          margin: EdgeInsets.only(bottom: dW * 0.1),
-        ),
+        floatingActionButton: user.role == "Admin"
+            ? Container(
+                child: FloatingActionButton.extended(
+                  onPressed: () {
+                    showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        enableDrag: true,
+                        builder: (context) => AddEventBottomSheet());
+                  },
+                  label: Text('Add new event'),
+                  icon: Icon(Icons.add),
+                ),
+                margin: EdgeInsets.only(bottom: dW * 0.1),
+              )
+            : null,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
     );

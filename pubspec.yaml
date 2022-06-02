@@ -44,6 +44,7 @@ dependencies:
   flutter_svg: ^1.0.3
   intl: ^0.17.0
   google_fonts: ^2.3.2
+  localstorage: ^4.0.0+1
 
 dev_dependencies:
   flutter_test:

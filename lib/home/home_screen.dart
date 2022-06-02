@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/commanWidget/app_bar.dart';
+import 'package:flutter_application_1/home/notification_screen.dart';
 import 'package:flutter_application_1/home/widgets/home_app_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,7 +14,17 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title:'KDC ' ),
+      appBar: CustomAppBar(
+        title: 'KDC ',
+        actions: [
+          IconButton(
+              onPressed: () =>Navigator.push(context, MaterialPageRoute(builder: ((context) => NotificationScreen()))),
+              icon: const Icon(
+                Icons.notifications,
+                color: Colors.white,
+              ))
+        ],
+      ),
       drawer: const HomeScreenAppDrawer(),
       body: Column(
         children: [],

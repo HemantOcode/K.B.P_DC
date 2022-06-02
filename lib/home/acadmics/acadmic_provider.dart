@@ -22,11 +22,13 @@ class AcadmicProvider with ChangeNotifier {
             objective: acad['objective'] ?? '',
             semesters: acad['semesters'] ?? [],
             shortForm: acad['shortForm'] ?? '',
+            image: acad['image'] ?? '',
             totalIntake: acad['totalIntake'].toString()));
       });
       notifyListeners();
       return (response);
     } catch (e) {
+      print(e);
       rethrow;
     }
   }

@@ -27,7 +27,8 @@ class _AcadmicDetailScreenState extends State<AcadmicDetailScreen> {
         child: Column(
           children: [
             Stack(
-              overflow: Overflow.visible,
+              // overflow: Overflow.visible,
+              clipBehavior: Clip.none,
               children: [
                 SizedBox(
                   height: dW * 0.45,
