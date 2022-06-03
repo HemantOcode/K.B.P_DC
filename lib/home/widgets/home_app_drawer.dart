@@ -6,6 +6,7 @@ import 'package:flutter_application_1/commanFunction/comman_functions.dart';
 import 'package:flutter_application_1/home/acadmics/acadmics_screen.dart';
 import 'package:flutter_application_1/home/events/event_screen.dart';
 import 'package:flutter_application_1/home/home_screen.dart';
+import 'package:flutter_application_1/home/students/students_screen.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +35,7 @@ class _HomeScreenAppDrawerState extends State<HomeScreenAppDrawer> {
     {'name': 'Acadmics', 'icon': 'assets/svgs/ac.svg'},
     {'name': 'About Us', 'icon': 'assets/svgs/about.svg'},
     {'name': 'Contact Us', 'icon': 'assets/svgs/contact.svg'},
+    {'name': 'Students', 'icon': 'assets/svgs/contact.svg'},
     {'name': 'Logout', 'icon': 'assets/svgs/logout.svg'},
   ];
 
@@ -55,6 +57,10 @@ class _HomeScreenAppDrawerState extends State<HomeScreenAppDrawer> {
       case 'About Us':
         break;
       case 'Contact Us':
+        break;
+
+      case 'Students':
+        pushAndRemoveUntil(context: context, widget: StudentScreen());
         break;
 
       case 'Logout':

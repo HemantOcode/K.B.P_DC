@@ -8,10 +8,24 @@ const endPoints = {
   'loginuser': '/api/user/loginuser',
   'fetchStudents': '/api/user/fetchStudents',
 
+  //appConfig
+
+  'insertAppConfig': '/api/appConfig/insertAppConfig',
+
+  'fetchAppConfig': '/api/appConfig/fetchAppConfig',
+
+  'fetchCommonAppConfig': '/api/appConfig/fetchCommonAppConfig',
+
   //Events
 
   'createEvent': '/api/event/createEvent',
   'fetchEvents': '/api/event/fetchEvents',
 
-  'fetchAcadmics': '/api/acadmic/fetchAcadmics'
+  'fetchAcadmics': '/api/acadmic/fetchAcadmics',
+
+  //
+
+  'fetchNotifications': '/api/event/fetchNotifications',
+
+  'markAsSeen': '/api/event/markAsSeen'
 };

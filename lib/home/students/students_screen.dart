@@ -10,30 +10,52 @@ class StudentScreen extends StatefulWidget {
 }
 
 class _StudentScreenState extends State<StudentScreen> {
+  bool isLoading = false;
+  myInit() {
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      Provider.of<AuthProvider>(context, listen: false).fetchStudents();
+    } catch (e) {
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    myInit();
+  }
+
   @override
   Widget build(BuildContext context) {
     final studentsList = Provider.of<AuthProvider>(context).students;
     return Scaffold(
-      body: ListView.builder(
-        itemBuilder: ((context, index) => ListTile(
-              title: Text(studentsList[index].name),
-            )),
-        itemCount: studentsList.length,
-      ),
+      body: isLoading
+          ? const Center(
+              child: CircularProgressIndicator.adaptive(),
+            )
+          : ListView.builder(
+              itemBuilder: ((context, index) => ListTile(
+                    title: Text(studentsList[index].name),
+                  )),
+              itemCount: studentsList.length,
+            ),
     );
   }
 }
-
 
 class StudentListTiles extends StatelessWidget {
   const StudentListTiles({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      
-    );
+    return ListTile();
   }
 }
-
-

@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter_application_1/auth/model/notification_model.dart';
+import 'package:flutter_application_1/commanFunction/comman_functions.dart';
 import 'package:localstorage/localstorage.dart';
 
 import 'package:flutter_application_1/api.dart';
@@ -8,11 +10,19 @@ import 'package:flutter_application_1/auth/model/user_model.dart';
 import 'package:flutter_application_1/commanFunction/http_request.dart';
 
 class AuthProvider with ChangeNotifier {
-  final LocalStorage storage = new LocalStorage('KDCCOLLEGE');
+  final LocalStorage storage = LocalStorage('KDCCOLLEGE');
 
   late UserModel userModel;
   late String accessToken;
   List<UserModel> students = [];
+  final List<NotificationModel> _notifications = [];
+
+  final List<String> bannerImages = [];
+
+  List<NotificationModel> get notifications {
+    return [..._notifications];
+  }
+
   registerAndLogin(
       {required Map<String, String> body, required String action}) async {
     String url = '';
@@ -34,7 +44,7 @@ class AuthProvider with ChangeNotifier {
           role: response['result']['role'],
           phone: response['result']['phone'],
           id: response['result']['_id']);
-      print(response);
+      // print(response);
 
       storage.setItem('userDetails', json.encode(response['result']));
     }
@@ -61,6 +71,44 @@ class AuthProvider with ChangeNotifier {
         ));
       });
       notifyListeners();
+    }
+  }
+
+  fetchNotifications() async {
+    final url = '${webApi['domain']}${endPoints['fetchNotifications']}';
+    try {
+      final response =
+          await postRequest(url: url, body: {'user': userModel.id});
+
+      if (response['success']) {
+        response['result'].forEach((notification) {
+          _notifications.add(NotificationModel(
+              id: notification['_id'],
+              date: notification['createdAt'] ?? DateTime.now(),
+              body: notification['body'] ?? '',
+              title: notification['title'] ?? '',
+              isSeen: notification['isSeen'] ?? false,
+              featureId: notification['featureId'] ?? '',
+              type: notification['type'] ?? ''));
+        });
+        notifyListeners();
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  seenNotification(String notificationId) async {
+    final url = '${webApi['domain']}${endPoints['markAsSeen']}';
+
+    await postRequest(url: url, body: {'notificationId': notificationId});
+
+    for (NotificationModel notification in _notifications) {
+      if (notification.id == notificationId) {
+        notification.isSeen = true;
+        notifyListeners();
+      }
+      continue;
     }
   }
 
