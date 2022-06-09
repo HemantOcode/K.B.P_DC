@@ -49,7 +49,7 @@ class _BannerCarouselState extends State<BannerCarousel> {
                       enableInfiniteScroll: true,
                       enlargeCenterPage: true,
                       autoPlayAnimationDuration:
-                          const Duration(milliseconds: 1500),
+                          const Duration(milliseconds: 400),
                       autoPlayInterval: const Duration(seconds: 10),
                       onPageChanged: (i, _) {
                         setState(() {
@@ -126,16 +126,16 @@ class Banners extends StatelessWidget {
         border: Border.all(
           color: Colors.grey.shade300,
         ),
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(8),
       ),
       width: double.infinity,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(8),
         child: CachedNetworkImage(
           fit: BoxFit.fill,
           imageUrl: banner,
           placeholder: (_, __) => Image.asset(
-            'assets/images/placeholder.jpg',
+            'assets/png/placeholder.webp',
             fit: BoxFit.cover,
           ),
         ),

@@ -19,6 +19,12 @@ class AuthProvider with ChangeNotifier {
 
   final List<String> bannerImages = [];
 
+  Map presidentDetail = {'name': '', 'image': ''};
+
+  Map beyondClassRoom = {'name': '', 'image': ''};
+
+  String welcomeMessage = '';
+
   List<NotificationModel> get notifications {
     return [..._notifications];
   }
@@ -115,5 +121,33 @@ class AuthProvider with ChangeNotifier {
   setUserModel(UserModel user) {
     userModel = user;
     notifyListeners();
+  }
+
+  fetchAppConfigsCommon({required String commonType}) async {
+    try {
+      final url = "${webApi['domain']}${endPoints['fetchCommonAppConfig']}";
+      final response =
+          await postRequest(url: url, body: {'commonType': commonType});
+          print(response);
+      response['result'].forEach((config) {
+        if (config['type'] == 'Banner') {
+          bannerImages.add(config['value']);
+        }
+        if (config['PresidentName'] == 'PresidentName') {
+          presidentDetail['name'] = config['value'];
+        }
+        if (config['PresidentImage'] == 'PresidentImage') {
+          presidentDetail['image'] = config['value'];
+        }
+        if (config['bc'] == 'bc') {
+          beyondClassRoom['image'] = config['value'];
+        }
+        if (config['welcomeMessage'] == 'welcomeMessage') {
+          welcomeMessage = config['value'];
+        }
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 }
