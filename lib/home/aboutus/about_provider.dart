@@ -9,9 +9,28 @@ class AboutProvider with ChangeNotifier {
   String aboutContent = '';
   List<String> eduFamily = [];
   String collegeBannar = '';
-  String collegeAddress ='';
+  String collegeAddress = '';
   List<String> collegePhone = [];
-  String coordinates ='';
+  String cood = '';
+  String vision = '';
+  String mission = '';
+  List<Map<String, String>> socialMedia = [
+    {
+      'icon': 'https://img.icons8.com/color/48/undefined/facebook-new.png',
+      'name': 'Facebook',
+      'url': '',
+    },
+    {
+      'icon': 'https://img.icons8.com/color/48/undefined/youtube-play.png',
+      'name': 'Youtube',
+      'url': '',
+    },
+    {
+      'icon': 'https://img.icons8.com/fluency/48/undefined/instagram-new.png',
+      'name': 'Instagram',
+      'url': '',
+    }
+  ];
 
   fetchAppConfigsCommon({required String commonType}) async {
     print(commonType);
@@ -19,6 +38,11 @@ class AboutProvider with ChangeNotifier {
     managements = [];
     eduFamily = [];
     aboutContent = '';
+    collegeAddress = '';
+    cood = '';
+    collegePhone = [];
+    vision = '';
+    mission = '';
     try {
       final url = "${webApi['domain']}${endPoints['fetchCommonAppConfig']}";
       final response =
@@ -44,7 +68,39 @@ class AboutProvider with ChangeNotifier {
           collegeBannar = config['value'];
         }
 
-        
+        if (config['type'] == 'address') {
+          collegeAddress = config['value'];
+        }
+
+        if (config['type'] == 'cood') {
+          cood = config['value'];
+        }
+
+        if (config['type'] == 'phone' || config['type'] == 'tel') {
+          collegePhone.add(config['value']);
+        }
+
+        if (config['type'] == 'vision') {
+          vision = config['value'];
+        }
+
+        if (config['type'] == 'mission') {
+          mission = config['value'];
+        }
+
+        if (config['type'] == 'mission') {
+          mission = config['value'];
+        }
+
+        if (config['type'] == 'Youtube') {
+          socialMedia[1]['url'] = config['value'];
+        }
+        if (config['type'] == 'Facebook') {
+          socialMedia[0]['url'] = config['value'];
+        }
+        if (config['type'] == 'Instagram') {
+          socialMedia[2]['url'] = config['value'];
+        }
       });
 
       notifyListeners();

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/commanFunction/comman_functions.dart';
+import 'package:flutter_application_1/home/aboutus/conatct_screen.dart';
 import 'package:flutter_application_1/home/aboutus/history_intro.dart';
 import 'package:flutter_application_1/home/aboutus/infra_screen.dart';
 import 'package:flutter_application_1/home/aboutus/management.dart';
+import 'package:flutter_application_1/home/aboutus/vision.dart';
 import 'package:flutter_application_1/home/widgets/home_app_drawer.dart';
 
 class AboutUsScreen extends StatefulWidget {
@@ -47,18 +49,24 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
         break;
 
       case 'History and Introduction':
-         pushAndRemoveUntil(context: context, widget: HistoryAndIntro());
+        pushAndRemoveUntil(context: context, widget: const HistoryAndIntro());
         break;
 
       case 'Mission and Vision':
+        pushAndRemoveUntil(context: context, widget: const MissionAndVision());
         break;
 
       case 'Infrastructure':
-        pushAndRemoveUntil(context: context, widget: InfraStructureScreen());
+        pushAndRemoveUntil(
+            context: context, widget: const InfraStructureScreen());
         break;
 
       case 'Management':
-        pushAndRemoveUntil(context: context, widget: ManagementScreen());
+        pushAndRemoveUntil(context: context, widget: const ManagementScreen());
+        break;
+
+      case 'Contact Us':
+        pushAndRemoveUntil(context: context, widget: const ContactScreen());
 
         break;
     }

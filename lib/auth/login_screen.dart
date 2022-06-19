@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/Auth/Home/home_screen.dart';
@@ -22,10 +23,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   handleInput() async {
     if (_formKey.currentState!.validate()) {
+      String? fcmToken = await FirebaseMessaging.instance.getToken();
       final result = await Provider.of<AuthProvider>(context, listen: false)
           .registerAndLogin(body: {
         'email': emailController.text,
-        'password': passwordController.text
+        'password': passwordController.text,
+        'fcmToken': fcmToken!
       }, action: "login");
 
       if (result['success']) {

@@ -36,7 +36,7 @@ class _HomeScreenAppDrawerState extends State<HomeScreenAppDrawer> {
     {'name': 'Acadmics', 'icon': 'assets/svgs/ac.svg'},
     {'name': 'About Us', 'icon': 'assets/svgs/about.svg'},
     {'name': 'Contact Us', 'icon': 'assets/svgs/contact.svg'},
-    {'name': 'Students', 'icon': 'assets/svgs/contact.svg'},
+    {'name': 'Students', 'icon': 'assets/svgs/people.svg'},
     {'name': 'Logout', 'icon': 'assets/svgs/logout.svg'},
   ];
 

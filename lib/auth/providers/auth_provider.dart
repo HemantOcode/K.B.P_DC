@@ -17,7 +17,7 @@ class AuthProvider with ChangeNotifier {
   List<UserModel> students = [];
   final List<NotificationModel> _notifications = [];
 
-  final List<String> bannerImages = [];
+  List<String> bannerImages = [];
 
   Map presidentDetail = {'name': '', 'image': ''};
 
@@ -134,6 +134,7 @@ class AuthProvider with ChangeNotifier {
   }
 
   fetchAppConfigsCommon({required String commonType}) async {
+    bannerImages = [];
     print(commonType);
     try {
       final url = "${webApi['domain']}${endPoints['fetchCommonAppConfig']}";
