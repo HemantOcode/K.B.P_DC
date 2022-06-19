@@ -161,11 +161,10 @@ class _EventScreenState extends State<EventScreen> {
                 haveOnGoingEvents(events)
                     ? ListView.separated(
                         physics: const BouncingScrollPhysics(),
-                        padding: EdgeInsets.only(top: 20),
                         itemCount: events.length,
                         separatorBuilder: (BuildContext context, int index) =>
                             SizedBox(
-                          height: dW * 0.05,
+                          // height: dW * 0.05,
                         ),
                         itemBuilder: (BuildContext context, int index) =>
                             getOnGoingEvents(events[index]),
@@ -176,11 +175,10 @@ class _EventScreenState extends State<EventScreen> {
                 haveUpCommingEvents(events)
                     ? ListView.separated(
                         physics: const BouncingScrollPhysics(),
-                        padding: EdgeInsets.only(top: 20),
                         itemCount: events.length,
                         separatorBuilder: (BuildContext context, int index) =>
                             SizedBox(
-                          height: dW * 0.05,
+                          // height: dW * 0.05,
                         ),
                         itemBuilder: (BuildContext context, int index) =>
                             getUpCommingEvents(events[index]),
@@ -191,11 +189,10 @@ class _EventScreenState extends State<EventScreen> {
                 haveFinishedEvents(events)
                     ? ListView.separated(
                         physics: const BouncingScrollPhysics(),
-                        padding: EdgeInsets.only(top: 20),
                         itemCount: events.length,
                         separatorBuilder: (BuildContext context, int index) =>
                             SizedBox(
-                          height: dW * 0.05,
+                          // height: dW * 0.05,
                         ),
                         itemBuilder: (BuildContext context, int index) =>
                             getFinisedEvents(events[index]),

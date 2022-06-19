@@ -1,4 +1,4 @@
-const webApi = {'domain': 'http://192.168.0.101:3000'};
+const webApi = {'domain': 'http://192.168.0.106:3000'};
 //
 
 // const webApi = {'domain': 'http://10.0.2.2:3000'}; //EMU connection

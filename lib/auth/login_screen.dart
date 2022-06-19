@@ -35,20 +35,20 @@ class _LoginScreenState extends State<LoginScreen> {
         return;
       }
 
-      if (Provider.of<AuthProvider>(context, listen: false).userModel.role ==
-          "Admin") {
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => AdminHomeScreen()),
-            (route) => false);
-      }
-      if (Provider.of<AuthProvider>(context, listen: false).userModel.role ==
-          "Student") {
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => HomeScreen()),
-            (route) => false);
-      }
+      // if (Provider.of<AuthProvider>(context, listen: false).userModel.role ==
+      //     "Admin") {
+      //   Navigator.pushAndRemoveUntil(
+      //       context,
+      //       MaterialPageRoute(builder: (context) => AdminHomeScreen()),
+      //       (route) => false);
+      // }
+      // if (Provider.of<AuthProvider>(context, listen: false).userModel.role ==
+      //     "Student") {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+          (route) => false);
+      // }
     }
   }
 

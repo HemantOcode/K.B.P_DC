@@ -83,7 +83,7 @@ class EventDetailsSheet extends StatelessWidget {
 
         Text(
           // DateFormat('dd MMM yyyy hh:mm a').format(eventModal.startDate),
-          differnceBetweenTwoDates(eventModal.startDate, eventModal.endDate),
+          differnceBetweenTwoDates(eventModal.endDate, eventModal.startDate),
           // 'This is importent this we can fo  most of the time their is nor oprinnHoe to do this thisg ans',
           style: getEventSubHeaderTextStyle(ts: ts),
         ),

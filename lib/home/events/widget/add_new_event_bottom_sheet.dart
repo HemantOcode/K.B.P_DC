@@ -139,7 +139,7 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                      children:const [
                         Text('Start Time'),
                         Text('End Time'),
                       ],
@@ -194,7 +194,7 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
                                 : FittedBox(
                                     child: Text(
                                       DateFormat('dd MMM yyyy hh:mm a').format(
-                                        DateTime.parse(startDate),
+                                        DateTime.parse(endDate),
                                       ),
                                       style: getEventSubHeaderBoldTextStyle(
                                           ts: ts, color: Colors.blue),

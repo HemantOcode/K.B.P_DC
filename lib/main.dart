@@ -1,8 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/auth/providers/auth_provider.dart';
 import 'package:flutter_application_1/auth/splash_screen.dart';
+import 'package:flutter_application_1/home/aboutus/about_provider.dart';
 import 'package:flutter_application_1/home/acadmics/acadmic_provider.dart';
 import 'package:flutter_application_1/home/events/event_provider.dart';
 import 'package:provider/provider.dart';
@@ -34,19 +33,6 @@ Future<void> onMessage(RemoteMessage message) async {
 
 onMessageOpened(RemoteMessage message) async {
   print("onMessageOpenedApp: ${message.data}");
-
-
-
- 
-  
-
-
-
-
-
-
-
-
 }
 
 Future<void> main() async {
@@ -94,6 +80,9 @@ class _KBPState extends State<KBP> {
           create: (_) => AcadmicProvider(),
         ),
         // AcadmicProvider
+        ChangeNotifierProvider(
+          create: (_) => AboutProvider(),
+        ),
       ],
       child: MaterialApp(
         theme: ThemeData(

@@ -37,7 +37,10 @@ class _SplashScreenState extends State<SplashScreen> {
           gender: userDetails['gender']??'',
           role: userDetails['role'],
           phone: userDetails['phone'],
-          id: userDetails['_id']);
+          id: userDetails['_id'],
+          accessToken: userDetails['accessToken'],
+          
+          );
 
       Provider.of<AuthProvider>(context, listen: false).setUserModel(user);
 

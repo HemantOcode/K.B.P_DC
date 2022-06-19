@@ -6,6 +6,7 @@ class UserModel {
   final String phone;
   final String id;
   final String? std;
+  final String? accessToken;
 
   UserModel(
       {required this.email,
@@ -14,5 +15,6 @@ class UserModel {
       required this.role,
       required this.phone,
       required this.id,
+       this.accessToken,
       this.std});
 }

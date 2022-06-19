@@ -44,6 +44,7 @@ class AuthProvider with ChangeNotifier {
     if (response['success']) {
       accessToken = response['accessToken'];
       userModel = UserModel(
+          accessToken: response['accessToken'],
           email: response['result']['email'],
           name: response['result']['name'],
           gender: response['result']['gender'] ?? '',
@@ -51,7 +52,7 @@ class AuthProvider with ChangeNotifier {
           phone: response['result']['phone'],
           id: response['result']['_id']);
       // print(response);
-
+      response['result']['accessToken'] = response['accessToken'];
       storage.setItem('userDetails', json.encode(response['result']));
     }
     return response;
@@ -62,22 +63,31 @@ class AuthProvider with ChangeNotifier {
 
   fetchStudents() async {
     final url = '${webApi['domain']}${endPoints['fetchStudents']}';
-    final response = await postRequest(url: url, body: {});
+
+    print(userModel);
+    students = [];
+
+    // try {
+    final response =
+        await postRequest(url: url, token: userModel.accessToken!, body: {});
 
     if (response['success']) {
       response['result'].forEach((student) {
         students.add(UserModel(
           id: student['_id'],
           name: student['name'],
-          gender: student['gender'],
+          gender: student['gender'] ?? '',
           role: student['role'],
           phone: student['phone'],
           email: student['email'],
-          std: student['std'],
+          std: student['std'] ?? '',
         ));
       });
       notifyListeners();
     }
+    // } catch (e) {
+    //   rethrow;
+    // }
   }
 
   fetchNotifications() async {
@@ -124,28 +134,33 @@ class AuthProvider with ChangeNotifier {
   }
 
   fetchAppConfigsCommon({required String commonType}) async {
+    print(commonType);
     try {
       final url = "${webApi['domain']}${endPoints['fetchCommonAppConfig']}";
       final response =
           await postRequest(url: url, body: {'commonType': commonType});
-          print(response);
+      print(response);
       response['result'].forEach((config) {
         if (config['type'] == 'Banner') {
           bannerImages.add(config['value']);
         }
-        if (config['PresidentName'] == 'PresidentName') {
+        if (config['type'] == 'PresidentName') {
           presidentDetail['name'] = config['value'];
         }
-        if (config['PresidentImage'] == 'PresidentImage') {
+        if (config['type'] == 'PresidentImage') {
           presidentDetail['image'] = config['value'];
         }
-        if (config['bc'] == 'bc') {
+        if (config['type'] == 'BC') {
           beyondClassRoom['image'] = config['value'];
         }
-        if (config['welcomeMessage'] == 'welcomeMessage') {
+        if (config['type'] == 'welcomeMessage') {
           welcomeMessage = config['value'];
         }
       });
+
+      notifyListeners();
+
+      return response['result'];
     } catch (e) {
       print(e);
     }

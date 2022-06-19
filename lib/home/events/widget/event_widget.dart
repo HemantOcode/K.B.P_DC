@@ -34,7 +34,7 @@ class EventWidget extends StatelessWidget {
             ),
           ],
         ),
-        margin: EdgeInsets.symmetric(horizontal: dW * 0.04),
+        margin: EdgeInsets.symmetric(horizontal: dW * 0.02,vertical: dW*0.01),
         child: Row(
           // mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,

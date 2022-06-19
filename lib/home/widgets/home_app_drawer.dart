@@ -3,6 +3,7 @@ import 'package:flutter_application_1/auth/login_screen.dart';
 import 'package:flutter_application_1/auth/model/user_model.dart';
 import 'package:flutter_application_1/auth/providers/auth_provider.dart';
 import 'package:flutter_application_1/commanFunction/comman_functions.dart';
+import 'package:flutter_application_1/home/aboutus/about_us.dart';
 import 'package:flutter_application_1/home/acadmics/acadmics_screen.dart';
 import 'package:flutter_application_1/home/events/event_screen.dart';
 import 'package:flutter_application_1/home/home_screen.dart';
@@ -55,6 +56,10 @@ class _HomeScreenAppDrawerState extends State<HomeScreenAppDrawer> {
 
         break;
       case 'About Us':
+        // pushAndRemoveUntil(context: context, widget: AboutUsScreen());
+        showModalBottomSheet(
+            context: context, builder: (context) => AboutUsScreen());
+
         break;
       case 'Contact Us':
         break;
@@ -104,17 +109,19 @@ class _HomeScreenAppDrawerState extends State<HomeScreenAppDrawer> {
             ),
           ),
           ...drawerOption.map(
-            (option) => ListTile(
-              leading: SvgPicture.asset(
-                option['icon'],
-                height: 25,
-                width: 25,
-              ),
-              title: Text(option['name']!),
-              onTap: () {
-                getNaviagtion(option['name']);
-              },
-            ),
+            (option) => option['name'] == "Students" && user.role == 'Student'
+                ? const SizedBox.shrink()
+                : ListTile(
+                    leading: SvgPicture.asset(
+                      option['icon'],
+                      height: 25,
+                      width: 25,
+                    ),
+                    title: Text(option['name']!),
+                    onTap: () {
+                      getNaviagtion(option['name']);
+                    },
+                  ),
           )
         ],
       ),
