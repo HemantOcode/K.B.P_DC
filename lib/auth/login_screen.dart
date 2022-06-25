@@ -17,32 +17,44 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   handleInput() async {
     if (_formKey.currentState!.validate()) {
-      String? fcmToken = await FirebaseMessaging.instance.getToken();
-      final result = await Provider.of<AuthProvider>(context, listen: false)
-          .registerAndLogin(body: {
-        'email': emailController.text,
-        'password': passwordController.text,
-        'fcmToken': fcmToken!
-      }, action: "login");
+      try {
+        setState(() {
+          isLoading = true;
+        });
+        String? fcmToken = await FirebaseMessaging.instance.getToken();
+        final result = await Provider.of<AuthProvider>(context, listen: false)
+            .registerAndLogin(body: {
+          'email': emailController.text,
+          'password': passwordController.text,
+          'fcmToken': fcmToken!
+        }, action: "login");
 
-      if (result['success']) {
-        successSnackbar(context, result['message']);
-      } else {
-        errorSnackbar(context, result['message']);
-        return;
+        if (result['success']) {
+          successSnackbar(context, result['message']);
+        } else {
+          errorSnackbar(context, result['message']);
+          return;
+        }
+
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            (route) => false);
+        // }
+      } catch (e) {
+        print(e);
+      } finally {
+        setState(() {
+          isLoading = false;
+        });
       }
-
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
-          (route) => false);
-      // }
     }
   }
 
@@ -223,63 +235,67 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                height: double.infinity,
-                child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 40.0,
-                    vertical: 120.0,
-                  ),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Image.asset(
-                          'assets/banner.png',
-                          fit: BoxFit.cover,
+      body: isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : AnnotatedRegion<SystemUiOverlayStyle>(
+              value: SystemUiOverlayStyle.light,
+              child: GestureDetector(
+                onTap: () => FocusScope.of(context).unfocus(),
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      height: double.infinity,
+                      child: SingleChildScrollView(
+                        physics: AlwaysScrollableScrollPhysics(),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 40.0,
+                          vertical: 120.0,
                         ),
-                        SizedBox(
-                          height: dW * 0.2,
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          child: const Text(
-                            'Sign In',
-                            style: TextStyle(
-                              color: Color(0xFF6CA8F1),
-                              fontFamily: 'OpenSans',
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Image.asset(
+                                'assets/banner.png',
+                                fit: BoxFit.cover,
+                              ),
+                              SizedBox(
+                                height: dW * 0.2,
+                              ),
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                child: const Text(
+                                  'Sign In',
+                                  style: TextStyle(
+                                    color: Color(0xFF6CA8F1),
+                                    fontFamily: 'OpenSans',
+                                    fontSize: 30.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: dW * 0.05,
+                              ),
+                              _buildEmailTF(),
+                              SizedBox(
+                                height: dW * 0.02,
+                              ),
+                              _buildPasswordTF(),
+                              _buildLoginBtn(),
+                              _buildSignupBtn(),
+                            ],
                           ),
                         ),
-                        SizedBox(
-                          height: dW * 0.05,
-                        ),
-                        _buildEmailTF(),
-                        SizedBox(
-                          height: dW * 0.02,
-                        ),
-                        _buildPasswordTF(),
-                        _buildLoginBtn(),
-                        _buildSignupBtn(),
-                      ],
-                    ),
-                  ),
+                      ),
+                    )
+                  ],
                 ),
-              )
-            ],
-          ),
-        ),
-      ),
+              ),
+            ),
     );
   }
 }
