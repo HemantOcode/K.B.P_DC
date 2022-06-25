@@ -139,7 +139,7 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children:const [
+                      children: const [
                         Text('Start Time'),
                         Text('End Time'),
                       ],

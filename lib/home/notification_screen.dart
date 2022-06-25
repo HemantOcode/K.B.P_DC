@@ -15,13 +15,14 @@ class NotificationScreen extends StatefulWidget {
 
 class _NotificationScreenState extends State<NotificationScreen> {
   bool isLoading = false;
-  myInit() {
+  myInit() async {
     setState(() {
       isLoading = true;
     });
 
     try {
-      Provider.of<AuthProvider>(context, listen: false).fetchNotifications();
+      await Provider.of<AuthProvider>(context, listen: false)
+          .fetchNotifications();
     } catch (e) {
       errorSnackbar(context, "Failed to fetch notification");
     } finally {
@@ -46,14 +47,19 @@ class _NotificationScreenState extends State<NotificationScreen> {
         Provider.of<AuthProvider>(context).notifications;
     return Scaffold(
       appBar: CustomAppBar(title: "Notifications"),
-      body: ListView.separated(
-        separatorBuilder: (context, index) => Divider(
-          height: dW * 0.01,
-        ),
-        itemBuilder: ((context, index) =>
-            NotificationTile(notificationModel: notifications[index])),
-        itemCount: notifications.length,
-      ),
+      body: isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.separated(
+              physics: BouncingScrollPhysics(),
+              separatorBuilder: (context, index) => Divider(
+                height: dW * 0.01,
+              ),
+              itemBuilder: ((context, index) =>
+                  NotificationTile(notificationModel: notifications[index])),
+              itemCount: notifications.length,
+            ),
     );
   }
 }

@@ -222,18 +222,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
             TextSpan(
               text: 'Already have an account ',
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.w400,
-              ),
+                  color: const Color(0xFF6CA8F1),
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 1.2),
             ),
             TextSpan(
               text: 'Log-In',
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
+                  color: Color(0xFF6CA8F1),
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1),
             ),
           ],
         ),
@@ -243,84 +243,95 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final dW = MediaQuery.of(context).size.width;
+
     return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color.fromARGB(255, 14, 7, 75),
-                      Color(0xFF61A4F1),
-                      Color(0xFF478DE0),
-                      Color(0xFF398AE5),
-                    ],
-                    stops: [0.1, 0.4, 0.7, 0.9],
-                  ),
+      body: SafeArea(
+        child: AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle.light,
+          child: GestureDetector(
+            onTap: () => FocusScope.of(context).unfocus(),
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                      // gradient: LinearGradient(
+                      //   begin: Alignment.topCenter,
+                      //   end: Alignment.bottomCenter,
+                      //   colors: [
+                      //     Color.fromARGB(255, 14, 7, 75),
+                      //     Color(0xFF61A4F1),
+                      //     Color(0xFF478DE0),
+                      //     Color(0xFF398AE5),
+                      //   ],
+                      //   stops: [0.1, 0.4, 0.7, 0.9],
+                      // ),
+                      color: Colors.white),
                 ),
-              ),
-              SizedBox(
-                height: double.infinity,
-                child: SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 40.0,
-                    vertical: 120.0,
-                  ),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(
-                          'assets/banner.png',
-                          fit: BoxFit.cover,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'OpenSans',
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold,
+                SizedBox(
+                  height: double.infinity,
+                  child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image.asset(
+                            'assets/banner.png',
+                            fit: BoxFit.cover,
                           ),
-                        ),
-                        const SizedBox(height: 30.0),
-                        _buildNameTF(),
-                        const SizedBox(
-                          height: 30.0,
-                        ),
-                        _buildEmailTF(),
-                        const SizedBox(
-                          height: 30.0,
-                        ),
-                        _buildPhoneNumberTF(),
-                        const SizedBox(
-                          height: 30.0,
-                        ),
-                        _buildPasswordTF(),
-                        const SizedBox(
-                          height: 30.0,
-                        ),
-                        _buildCreateAccountBtn(),
-                        _buildSignupBtn(),
-                      ],
+                          Container(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: dW * 0.05),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: dW * 0.1,
+                                ),
+                                const SizedBox(
+                                  width: double.infinity,
+                                  child: Text(
+                                    'Sign Up',
+                                    style: TextStyle(
+                                      color: Color(0xFF6CA8F1),
+                                      fontFamily: 'OpenSans',
+                                      fontSize: 30.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: dW * 0.02),
+                                _buildNameTF(),
+                                const SizedBox(
+                                  height: 30.0,
+                                ),
+                                _buildEmailTF(),
+                                const SizedBox(
+                                  height: 30.0,
+                                ),
+                                _buildPhoneNumberTF(),
+                                const SizedBox(
+                                  height: 30.0,
+                                ),
+                                _buildPasswordTF(),
+                                const SizedBox(
+                                  height: 30.0,
+                                ),
+                                _buildCreateAccountBtn(),
+                                _buildSignupBtn(),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),

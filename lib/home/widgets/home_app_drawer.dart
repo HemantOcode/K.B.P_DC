@@ -4,6 +4,7 @@ import 'package:flutter_application_1/auth/model/user_model.dart';
 import 'package:flutter_application_1/auth/providers/auth_provider.dart';
 import 'package:flutter_application_1/commanFunction/comman_functions.dart';
 import 'package:flutter_application_1/home/aboutus/about_us.dart';
+import 'package:flutter_application_1/home/aboutus/conatct_screen.dart';
 import 'package:flutter_application_1/home/acadmics/acadmics_screen.dart';
 import 'package:flutter_application_1/home/events/event_screen.dart';
 import 'package:flutter_application_1/home/home_screen.dart';
@@ -43,29 +44,31 @@ class _HomeScreenAppDrawerState extends State<HomeScreenAppDrawer> {
   getNaviagtion(title) {
     switch (title) {
       case 'Home':
-        pushAndRemoveUntil(context: context, widget: HomeScreen());
+        pushAndRemoveUntil(context: context, widget: const HomeScreen());
 
         break;
 
       case 'Events':
-        pushAndRemoveUntil(context: context, widget: EventScreen());
+        pushAndRemoveUntil(context: context, widget: const EventScreen());
 
         break;
       case 'Acadmics':
-        pushAndRemoveUntil(context: context, widget: AcadmicsScreen());
+        pushAndRemoveUntil(context: context, widget: const AcadmicsScreen());
 
         break;
       case 'About Us':
         // pushAndRemoveUntil(context: context, widget: AboutUsScreen());
         showModalBottomSheet(
-            context: context, builder: (context) => AboutUsScreen());
+            context: context, builder: (context) => const AboutUsScreen());
 
         break;
       case 'Contact Us':
+        pushAndRemoveUntil(context: context, widget: const ContactScreen());
+
         break;
 
       case 'Students':
-        pushAndRemoveUntil(context: context, widget: StudentScreen());
+        pushAndRemoveUntil(context: context, widget: const StudentScreen());
         break;
 
       case 'Logout':
@@ -95,10 +98,12 @@ class _HomeScreenAppDrawerState extends State<HomeScreenAppDrawer> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CircleAvatar(
+                  radius: 30,
                   backgroundColor: Colors.black12,
                   child: Icon(
                     Icons.person,
-                    color: Colors.white,
+                    color: Theme.of(context).primaryColor,
+                    size: 40,
                   ),
                 ),
                 Column(

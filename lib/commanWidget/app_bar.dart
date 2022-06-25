@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({Key? key, required this.title, this.actions}) : super(key: key);
+  const CustomAppBar({Key? key, required this.title, this.actions})
+      : super(key: key);
   final String title;
   final List<Widget>? actions;
 
@@ -13,8 +14,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         title,
         style: TextStyle(letterSpacing: 2),
       ),
-      actions:actions??[]
-    
+      actions: actions ?? [],
     );
   }
 

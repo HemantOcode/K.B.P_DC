@@ -15,7 +15,7 @@ class AuthProvider with ChangeNotifier {
   late UserModel userModel;
   late String accessToken;
   List<UserModel> students = [];
-  final List<NotificationModel> _notifications = [];
+  List<NotificationModel> _notifications = [];
 
   List<String> bannerImages = [];
 
@@ -92,6 +92,7 @@ class AuthProvider with ChangeNotifier {
 
   fetchNotifications() async {
     final url = '${webApi['domain']}${endPoints['fetchNotifications']}';
+    _notifications = [];
     try {
       final response =
           await postRequest(url: url, body: {'user': userModel.id});
@@ -100,7 +101,7 @@ class AuthProvider with ChangeNotifier {
         response['result'].forEach((notification) {
           _notifications.add(NotificationModel(
               id: notification['_id'],
-              date: notification['createdAt'] ?? DateTime.now(),
+              date: DateTime.parse(notification['createdAt']).toLocal(),
               body: notification['body'] ?? '',
               title: notification['title'] ?? '',
               isSeen: notification['isSeen'] ?? false,

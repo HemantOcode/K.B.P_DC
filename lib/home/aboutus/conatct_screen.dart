@@ -52,6 +52,8 @@ class _ContactScreenState extends State<ContactScreen> {
     final String collegeBannar =
         Provider.of<AboutProvider>(context).collegeBannar;
 
+    final latLng = Provider.of<AboutProvider>(context).cood;
+
     final socialMedia = Provider.of<AboutProvider>(context).socialMedia;
     return Scaffold(
       appBar: AppBar(
@@ -76,6 +78,9 @@ class _ContactScreenState extends State<ContactScreen> {
                         image: collegeBannar),
                   ),
                 ),
+                SizedBox(
+                  height: dW * 0.1,
+                ),
                 Container(
                   decoration: BoxDecoration(
                       color: Colors.blue,
@@ -98,8 +103,9 @@ class _ContactScreenState extends State<ContactScreen> {
                           minLeadingWidth: 0.0,
                           contentPadding: EdgeInsets.all(0),
                           onTap: () async {
-                            if (await canLaunch('')) {
-                              launch('');
+                            if (await canLaunch(
+                                "google.navigation:q=$latLng&mode=d")) {
+                              launch("google.navigation:q=$latLng&mode=d");
                             } else {
                               errorSnackbar(context, 'Unable to open map');
                             }

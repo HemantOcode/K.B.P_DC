@@ -85,7 +85,7 @@ class _MissionAndVisionState extends State<MissionAndVision> {
                         margin: EdgeInsets.symmetric(vertical: dW * 0.05),
                         height: dW * 0.1,
                         width: dW * 0.1,
-                        child: Image.asset('assets/mission.png')),
+                        child: Image.asset('assets/Mission.png')),
                     Container(
                       width: double.infinity,
                       child: Text(

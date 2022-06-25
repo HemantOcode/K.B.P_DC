@@ -34,7 +34,8 @@ class EventWidget extends StatelessWidget {
             ),
           ],
         ),
-        margin: EdgeInsets.symmetric(horizontal: dW * 0.02,vertical: dW*0.01),
+        margin:
+            EdgeInsets.symmetric(horizontal: dW * 0.02, vertical: dW * 0.01),
         child: Row(
           // mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,7 +47,8 @@ class EventWidget extends StatelessWidget {
                 width: dW * 0.15,
                 // margin: EdgeInsets.only(right: dW * 0.02),
                 // padding: EdgeInsets.all(dW * 0.02),
-                child: Image.network('https://picsum.photos/200'),
+                child: Image.network(
+                    'https://img.icons8.com/external-sbts2018-blue-sbts2018/58/000000/external-events-social-media-basic-1-sbts2018-blue-sbts2018.png'),
               ),
             ),
             Container(

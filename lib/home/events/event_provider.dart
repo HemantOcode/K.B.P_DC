@@ -8,7 +8,6 @@ class EventProvider with ChangeNotifier {
 
   createEvent({required Map<String, dynamic> eventBody}) async {
     try {
-      print('object');
       final response = await postRequest(
           url: '${webApi['domain']}${endPoints['createEvent']}',
           body: eventBody);

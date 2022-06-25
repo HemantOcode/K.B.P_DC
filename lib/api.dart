@@ -1,4 +1,6 @@
-const webApi = {'domain': 'http://192.168.0.106:3000'};
+// const webApi = {'domain': 'http://192.168.0.105:3000'};
+const webApi = {'domain': 'https://kbpcollege.herokuapp.com'};
+
 //
 
 // const webApi = {'domain': 'http://10.0.2.2:3000'}; //EMU connection
@@ -25,7 +27,7 @@ const endPoints = {
 
   //
 
-  'fetchNotifications': '/api/event/fetchNotifications',
+  'fetchNotifications': '/api/notification/fetchNotifications',
 
-  'markAsSeen': '/api/event/markAsSeen'
+  'markAsSeen': '/api/notification/markAsSeen'
 };

@@ -55,8 +55,8 @@ class _StudentScreenState extends State<StudentScreen> {
                       launch('tel: ${studentsList[index].phone}');
                     },
                     leading: CircleAvatar(
-                      child: Image.network(
-                        'https://img.icons8.com/bubbles/50/undefined/name.png',
+                      child: Image.asset(
+                        'assets/png/name.png',
                         fit: BoxFit.fill,
                       ),
                       backgroundColor: Colors.transparent,

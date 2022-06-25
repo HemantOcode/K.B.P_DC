@@ -72,7 +72,7 @@ class AboutProvider with ChangeNotifier {
           collegeAddress = config['value'];
         }
 
-        if (config['type'] == 'cood') {
+        if (config['type'] == 'latlng') {
           cood = config['value'];
         }
 

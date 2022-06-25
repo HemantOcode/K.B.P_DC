@@ -1,13 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/auth/providers/auth_provider.dart';
 import 'package:flutter_application_1/auth/splash_screen.dart';
 import 'package:flutter_application_1/home/aboutus/about_provider.dart';
 import 'package:flutter_application_1/home/acadmics/acadmic_provider.dart';
 import 'package:flutter_application_1/home/events/event_provider.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+
+import 'commanFunction/local_notification_service.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'high_importance_channel', // id
@@ -17,39 +22,11 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-Future<void> backgroundHandler(RemoteMessage message) async {
-  debugPrint(message.notification!.body.toString());
-  debugPrint(message.notification!.title);
-}
-
-Future<void> onMessage(RemoteMessage message) async {
-  print('Got a message whilst in the foreground!');
-  print('Message data: ${message.data}');
-
-  if (message.notification != null) {
-    print('Message also contained a notification: ${message.notification}');
-  }
-}
-
-onMessageOpened(RemoteMessage message) async {
-  print("onMessageOpenedApp: ${message.data}");
-}
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  FirebaseMessaging.onBackgroundMessage(backgroundHandler);
-  FirebaseMessaging.onMessage.listen(onMessage);
-  // ignore: unused_local_variable
-
-  FirebaseMessaging.onMessageOpenedApp.listen(onMessageOpened);
-
-  FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-      alert: true, badge: true, sound: true);
-  // FirebaseMessaging.instance
-
   String? fcmToken = await FirebaseMessaging.instance.getToken();
-  print(fcmToken);
+  debugPrint(fcmToken);
   runApp(const KBP());
 }
 

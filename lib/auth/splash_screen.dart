@@ -17,11 +17,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final LocalStorage storage = new LocalStorage('KDCCOLLEGE');
+  final LocalStorage storage = LocalStorage('KDCCOLLEGE');
 
   myInit() async {
     await storage.ready;
-    final userDetails = json.decode(storage.getItem('userDetails')??'{}');
+    final userDetails = json.decode(storage.getItem('userDetails') ?? '{}');
     if (userDetails.isEmpty) {
       Navigator.pushAndRemoveUntil(
           context,
@@ -32,15 +32,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
     try {
       UserModel user = UserModel(
-          email: userDetails['email'],
-          name: userDetails['name'],
-          gender: userDetails['gender']??'',
-          role: userDetails['role'],
-          phone: userDetails['phone'],
-          id: userDetails['_id'],
-          accessToken: userDetails['accessToken'],
-          
-          );
+        email: userDetails['email'],
+        name: userDetails['name'],
+        gender: userDetails['gender'] ?? '',
+        role: userDetails['role'],
+        phone: userDetails['phone'],
+        id: userDetails['_id'],
+        accessToken: userDetails['accessToken'],
+      );
 
       Provider.of<AuthProvider>(context, listen: false).setUserModel(user);
 

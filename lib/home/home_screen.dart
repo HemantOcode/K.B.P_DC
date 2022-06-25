@@ -1,11 +1,18 @@
+import 'dart:convert';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/auth/providers/auth_provider.dart';
 import 'package:flutter_application_1/commanWidget/app_bar.dart';
+import 'package:flutter_application_1/home/events/event_screen.dart';
 import 'package:flutter_application_1/home/events/text_styles.dart';
 import 'package:flutter_application_1/home/notification_screen.dart';
 import 'package:flutter_application_1/home/widgets/banner_carousel.dart';
 import 'package:flutter_application_1/home/widgets/home_app_drawer.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:provider/provider.dart';
+
+import '../commanFunction/local_notification_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,9 +22,46 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final LocalStorage storage = LocalStorage('KDCCOLLEGE');
+
   bool isLoading = false;
 
+  setUpNotificationFunctions() async {
+    try {
+      LocalNotificationService.initialize(context, handleNotificationClick);
+      FirebaseMessaging.onMessage.listen((event) {
+        // LocalNotificationService.display(event);
+      });
+
+      FirebaseMessaging.onMessageOpenedApp.listen((event) {
+        LocalNotificationService.display(event);
+      });
+
+      FirebaseMessaging.onBackgroundMessage(
+          (message) => handleNotificationClick(message));
+    } catch (e) {
+      debugPrint('Errorrrrrrrrrrrrrrrrrrrrrrr');
+      debugPrint(e.toString());
+      debugPrint('Errorrrrrrrrrrrrrrrrrrrrrrr');
+    }
+    await awaitStorageReady();
+  }
+
+  awaitStorageReady() async {
+    await storage.ready;
+  }
+
+  String? notificationId;
+
+  handleNotificationClick(data) async {
+    print(data);
+
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const EventScreen()));
+  }
+
   myInit() async {
+    await setUpNotificationFunctions();
     setState(() {
       isLoading = true;
     });
@@ -46,10 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
     final dW = MediaQuery.of(context).size.width;
     final List<String> bannerImages =
         Provider.of<AuthProvider>(context).bannerImages;
-    final presidentDetail=  Provider.of<AuthProvider>(context).presidentDetail;
-    final bc=  Provider.of<AuthProvider>(context).beyondClassRoom; 
+    final presidentDetail = Provider.of<AuthProvider>(context).presidentDetail;
+    final bc = Provider.of<AuthProvider>(context).beyondClassRoom;
     final welcomeMessage = Provider.of<AuthProvider>(context).welcomeMessage;
-
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -131,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   HomeImageWidgets(
                     dW: dW,
                     image: presidentDetail['image'],
-                    footer:  presidentDetail['name'],
+                    footer: presidentDetail['name'],
                     title: 'Governing Council',
                   ),
                 ],
@@ -195,7 +238,7 @@ class HomeImageWidgets extends StatelessWidget {
                 : Container(
                     alignment: Alignment.center,
                     margin: EdgeInsets.symmetric(vertical: dW * 0.02),
-                    padding: EdgeInsets.symmetric(horizontal: dW*0.02),
+                    padding: EdgeInsets.symmetric(horizontal: dW * 0.02),
                     child: Text(
                       footer,
                       style: Theme.of(context).textTheme.headline6!.copyWith(
