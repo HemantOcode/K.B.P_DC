@@ -6,7 +6,7 @@ const kHintTextStyle = TextStyle(
 );
 
 const kLabelStyle = TextStyle(
-  color: Colors.white,
+  color: const Color(0xFF6CA8F1),
   fontWeight: FontWeight.bold,
   fontFamily: 'OpenSans',
 );
@@ -23,7 +23,3 @@ final kBoxDecorationStyle = BoxDecoration(
     ),
   ],
 );
-
-
-
-

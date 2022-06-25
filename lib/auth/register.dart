@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_application_1/auth/login_screen.dart';
 import 'package:flutter_application_1/auth/providers/auth_provider.dart';
 import 'package:flutter_application_1/commanFunction/comman_functions.dart';
+import 'package:flutter_application_1/home/home_screen.dart';
 import 'package:provider/provider.dart';
 import './utilites/constant.dart';
 
@@ -14,6 +15,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -24,16 +26,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (_formKey.currentState!.validate()) {
       // showSnackBar(context: context);
 
-      final result = await Provider.of<AuthProvider>(context, listen: false)
-          .registerAndLogin(body: {
-        'name': nameController.text,
-        'email': emailController.text,
-        'phone': phoneController.text,
-        'password': passwordController.text
-      }, action: "register");
+      setState(() {
+        isLoading = false;
+      });
 
-      if (result['success']) {
-        successSnackbar(context, result['message']);
+      try {
+        final result = await Provider.of<AuthProvider>(context, listen: false)
+            .registerAndLogin(body: {
+          'name': nameController.text,
+          'email': emailController.text,
+          'phone': phoneController.text,
+          'password': passwordController.text
+        }, action: "register");
+
+        if (result['success']) {
+          successSnackbar(context, result['message']);
+          pushAndRemoveUntil(context: context, widget: const HomeScreen());
+        } else {
+          errorSnackbar(context, result['message']);
+        }
+      } catch (e) {
+      } finally {
+        setState(() {
+          isLoading = false;
+        });
       }
     }
   }
@@ -124,6 +140,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextFormField(
+            maxLength: 10,
             controller: phoneController,
             keyboardType: TextInputType.phone,
             style: const TextStyle(
@@ -131,6 +148,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               fontFamily: 'OpenSans',
             ),
             decoration: const InputDecoration(
+              counterText: '',
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
@@ -176,6 +194,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
               hintText: 'Enter your Password',
               hintStyle: kHintTextStyle,
             ),
+            validator: (value) {
+              if (value!.length < 6) {
+                return 'Password should be 6 characters long';
+              }
+            },
           ),
         ),
       ],
@@ -247,93 +270,97 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: AnnotatedRegion<SystemUiOverlayStyle>(
-          value: SystemUiOverlayStyle.light,
-          child: GestureDetector(
-            onTap: () => FocusScope.of(context).unfocus(),
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  height: double.infinity,
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                      // gradient: LinearGradient(
-                      //   begin: Alignment.topCenter,
-                      //   end: Alignment.bottomCenter,
-                      //   colors: [
-                      //     Color.fromARGB(255, 14, 7, 75),
-                      //     Color(0xFF61A4F1),
-                      //     Color(0xFF478DE0),
-                      //     Color(0xFF398AE5),
-                      //   ],
-                      //   stops: [0.1, 0.4, 0.7, 0.9],
-                      // ),
-                      color: Colors.white),
-                ),
-                SizedBox(
-                  height: double.infinity,
-                  child: SingleChildScrollView(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Image.asset(
-                            'assets/banner.png',
-                            fit: BoxFit.cover,
-                          ),
-                          Container(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: dW * 0.05),
+        child: isLoading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : AnnotatedRegion<SystemUiOverlayStyle>(
+                value: SystemUiOverlayStyle.light,
+                child: GestureDetector(
+                  onTap: () => FocusScope.of(context).unfocus(),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        height: double.infinity,
+                        width: double.infinity,
+                        decoration: const BoxDecoration(
+                            // gradient: LinearGradient(
+                            //   begin: Alignment.topCenter,
+                            //   end: Alignment.bottomCenter,
+                            //   colors: [
+                            //     Color.fromARGB(255, 14, 7, 75),
+                            //     Color(0xFF61A4F1),
+                            //     Color(0xFF478DE0),
+                            //     Color(0xFF398AE5),
+                            //   ],
+                            //   stops: [0.1, 0.4, 0.7, 0.9],
+                            // ),
+                            color: Colors.white),
+                      ),
+                      SizedBox(
+                        height: double.infinity,
+                        child: SingleChildScrollView(
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          child: Form(
+                            key: _formKey,
                             child: Column(
-                              children: [
-                                SizedBox(
-                                  height: dW * 0.1,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Image.asset(
+                                  'assets/banner.png',
+                                  fit: BoxFit.cover,
                                 ),
-                                const SizedBox(
-                                  width: double.infinity,
-                                  child: Text(
-                                    'Sign Up',
-                                    style: TextStyle(
-                                      color: Color(0xFF6CA8F1),
-                                      fontFamily: 'OpenSans',
-                                      fontSize: 30.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: dW * 0.05),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: dW * 0.1,
+                                      ),
+                                      const SizedBox(
+                                        width: double.infinity,
+                                        child: Text(
+                                          'Sign Up',
+                                          style: TextStyle(
+                                            color: Color(0xFF6CA8F1),
+                                            fontFamily: 'OpenSans',
+                                            fontSize: 30.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: dW * 0.02),
+                                      _buildNameTF(),
+                                      const SizedBox(
+                                        height: 30.0,
+                                      ),
+                                      _buildEmailTF(),
+                                      const SizedBox(
+                                        height: 30.0,
+                                      ),
+                                      _buildPhoneNumberTF(),
+                                      const SizedBox(
+                                        height: 30.0,
+                                      ),
+                                      _buildPasswordTF(),
+                                      const SizedBox(
+                                        height: 30.0,
+                                      ),
+                                      _buildCreateAccountBtn(),
+                                      _buildSignupBtn(),
+                                    ],
                                   ),
                                 ),
-                                SizedBox(height: dW * 0.02),
-                                _buildNameTF(),
-                                const SizedBox(
-                                  height: 30.0,
-                                ),
-                                _buildEmailTF(),
-                                const SizedBox(
-                                  height: 30.0,
-                                ),
-                                _buildPhoneNumberTF(),
-                                const SizedBox(
-                                  height: 30.0,
-                                ),
-                                _buildPasswordTF(),
-                                const SizedBox(
-                                  height: 30.0,
-                                ),
-                                _buildCreateAccountBtn(),
-                                _buildSignupBtn(),
                               ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      )
+                    ],
                   ),
-                )
-              ],
-            ),
-          ),
-        ),
+                ),
+              ),
       ),
     );
   }
