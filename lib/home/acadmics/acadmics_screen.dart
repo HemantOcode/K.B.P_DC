@@ -28,6 +28,10 @@ class _AcadmicsScreenState extends State<AcadmicsScreen> {
           .fetchAcadmics();
     } catch (e) {
       print(e);
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -46,36 +50,40 @@ class _AcadmicsScreenState extends State<AcadmicsScreen> {
     return Scaffold(
       appBar: CustomAppBar(title: 'Acadmics'),
       drawer: HomeScreenAppDrawer(),
-      body: ListView.separated(
-        separatorBuilder: ((context, index) => SizedBox(
-              height: dW * 0.025,
-            )),
-        padding:
-            EdgeInsets.symmetric(horizontal: dW * 0.02, vertical: dW * 0.02),
-        itemBuilder: (context, index) => Card(
-          child: ListTile(
-            // enabled: true,
-            minLeadingWidth: 10,
-            leading: SizedBox(
-                height: dW * 0.05,
-                width: dW * 0.05,
-                child: Image.network(
-                  acadList[index].image,
-                  fit: BoxFit.fill,
-                )),
-            title: Text(
-              acadList[index].name,
-              style: Theme.of(context).textTheme.headline6,
+      body: isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.separated(
+              separatorBuilder: ((context, index) => SizedBox(
+                    height: dW * 0.025,
+                  )),
+              padding: EdgeInsets.symmetric(
+                  horizontal: dW * 0.02, vertical: dW * 0.02),
+              itemBuilder: (context, index) => Card(
+                child: ListTile(
+                  // enabled: true,
+                  minLeadingWidth: 10,
+                  leading: SizedBox(
+                      height: dW * 0.05,
+                      width: dW * 0.05,
+                      child: Image.network(
+                        acadList[index].image,
+                        fit: BoxFit.fill,
+                      )),
+                  title: Text(
+                    acadList[index].name,
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AcadmicDetailScreen(
+                              acadmicModal: acadList[index]))),
+                ),
+              ),
+              itemCount: acadList.length,
             ),
-            onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        AcadmicDetailScreen(acadmicModal: acadList[index]))),
-          ),
-        ),
-        itemCount: acadList.length,
-      ),
     );
   }
 }
