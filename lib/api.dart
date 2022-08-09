@@ -1,14 +1,19 @@
-// const webApi = {'domain': 'http://192.168.0.105:3000'};
-const webApi = {'domain': 'https://kbpcollege.herokuapp.com'};
+// const webApi = {'domain': 'http://192.168.0.103:3000'};
+// const webApi = {'domain': 'https://kbpcollege.herokuapp.com'};
 
 //
 
-// const webApi = {'domain': 'http://10.0.2.2:3000'}; //EMU connection
+const webApi = {'domain': 'http://10.0.2.2:3000'}; //EMU connection
 
 const endPoints = {
   'register': '/api/user/register',
   'loginuser': '/api/user/loginuser',
   'fetchStudents': '/api/user/fetchStudents',
+
+//Forget Passwords
+
+  'getUserEmailORPhone': '/api/user/getUserEmailORPhone',
+  'changeUserPassWord': '/api/user/changeUserPassWord',
 
   //appConfig
 

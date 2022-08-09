@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/Auth/Home/home_screen.dart';
 import 'package:flutter_application_1/Auth/register.dart';
+import 'package:flutter_application_1/auth/forget_password_screen.dart';
 import 'package:flutter_application_1/auth/providers/auth_provider.dart';
 import 'package:flutter_application_1/home/home_screen.dart';
 import 'package:provider/provider.dart';
@@ -133,9 +134,11 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildForgotPasswordBtn() {
     return Container(
       alignment: Alignment.centerRight,
-      child: FlatButton(
-        onPressed: () => print('Forgot Password Button Pressed'),
-        padding: const EdgeInsets.only(right: 0.0),
+      child: TextButton(
+        onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const ForgetPasswordScreen())),
         child: const Text(
           'Forgot Password?',
           style: kLabelStyle,
@@ -285,6 +288,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: dW * 0.02,
                               ),
                               _buildPasswordTF(),
+                              _buildForgotPasswordBtn(),
                               _buildLoginBtn(),
                               _buildSignupBtn(),
                             ],

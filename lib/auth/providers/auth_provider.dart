@@ -167,4 +167,31 @@ class AuthProvider with ChangeNotifier {
       print(e);
     }
   }
+
+  getUserDetails({required String query}) async {
+    final url = "${webApi['domain']}${endPoints['getUserEmailORPhone']}";
+
+    final response = await postRequest(url: url, body: {'query': query});
+
+    final responseData = json.decode(response.body);
+    print(responseData);
+
+    if (responseData['success']) {
+      return responseData;
+    }
+  }
+
+  changeUserPassWord({required String phone, required String password}) async {
+    try {
+      final url = "${webApi['domain']}${endPoints['changeUserPassWord']}";
+      final response = await postRequest(
+          url: url, body: {'phone': phone, 'password': password});
+
+      final responseData = json.decode(response.body);
+
+      return responseData['success'];
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

@@ -28,6 +28,7 @@ class LocalNotificationService {
   static void display(RemoteMessage message) async {
     //
     try {
+      print(message);
       final id = DateTime.now().millisecondsSinceEpoch ~/ 1000;
 
       const NotificationDetails notificationDetails = NotificationDetails(
@@ -36,6 +37,9 @@ class LocalNotificationService {
           "KBP channel",
           importance: Importance.max,
           priority: Priority.high,
+          ongoing: true,
+          styleInformation: BigTextStyleInformation(''),
+          channelShowBadge: true,
         ),
         iOS: IOSNotificationDetails(
           presentAlert: true,
