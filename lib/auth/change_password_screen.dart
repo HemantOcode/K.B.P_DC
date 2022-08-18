@@ -20,6 +20,8 @@ class _ChanegPasswordScreenState extends State<ChanegPasswordScreen> {
   TextEditingController confirmPasswordController = TextEditingController();
 
   changePassWord() async {
+    print(confirmPasswordController.text);
+    print(passwordController.text);
     if (_formKey.currentState!.validate()) {
       final response = await Provider.of<AuthProvider>(context, listen: false)
           .changeUserPassWord(
@@ -30,12 +32,14 @@ class _ChanegPasswordScreenState extends State<ChanegPasswordScreen> {
             context,
             MaterialPageRoute(builder: (context) => const LoginScreen()),
             (route) => false);
+        return;
       }
       errorSnackbar(context, 'Failed to reset your password, Try again later');
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => const LoginScreen()),
           (route) => false);
+      return;
     }
   }
 
@@ -52,66 +56,75 @@ class _ChanegPasswordScreenState extends State<ChanegPasswordScreen> {
           maintainBottomViewPadding: true,
           child: Container(
             padding: EdgeInsets.all(dW * 0.05),
-            child: Column(
-              children: [
-                TextFormField(
-                  validator: (value) {
-                    if (value != confirmPasswordController.text) {
-                      return 'Password not matched';
-                    }
-                    if (value!.trim() == '') {
-                      return " Password can't be blank ";
-                    }
-                    if (value.trim().length < 6) {
-                      return " Password must be 6 Character long";
-                    }
-                  },
-                  decoration: const InputDecoration(
-                    hintText: 'Set New Password',
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(width: 2),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: passwordController,
+                    validator: (value) {
+                      if (value != confirmPasswordController.text) {
+                        return 'Password not matched';
+                      }
+                      if (value!.trim() == '') {
+                        return " Password can't be blank ";
+                      }
+                      if (value.trim().length < 6) {
+                        return " Password must be 6 Character long";
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                      hintText: 'Set New Password',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(width: 2),
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: dW * 0.08,
-                ),
-                TextFormField(
-                  validator: (value) {
-                    if (value != passwordController.text) {
-                      return 'Password not matched';
-                    }
-
-                    if (value!.trim() == '') {
-                      return " Password can't be blank ";
-                    }
-                    if (value.trim().length < 6) {
-                      return " Password must be 6 Character long";
-                    }
-                  },
-                  decoration: const InputDecoration(
-                    hintText: 'Confirm New Password',
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(width: 2),
+                  SizedBox(
+                    height: dW * 0.08,
+                  ),
+                  TextFormField(
+                    controller: confirmPasswordController,
+                    validator: (value) {
+                      if (value != passwordController.text) {
+                        return 'Password not matched';
+                      }
+            
+                      if (value!.trim() == '') {
+                        return " Password can't be blank ";
+                      }
+                      if (value.trim().length < 6) {
+                        return " Password must be 6 Character long";
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                      hintText: 'Confirm New Password',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(width: 2),
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: dW * 0.1,
-                ),
-                SizedBox(
-                  height: dW * 0.12,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    child: const Text(
-                      'Change Password',
-                      style: TextStyle(
-                          letterSpacing: .56, fontWeight: FontWeight.w400),
-                    ),
-                    onPressed: () {},
+                  SizedBox(
+                    height: dW * 0.1,
                   ),
-                )
-              ],
+                  SizedBox(
+                    height: dW * 0.12,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      child: const Text(
+                        'Change Password',
+                        style: TextStyle(
+                            letterSpacing: .56, fontWeight: FontWeight.w400),
+                      ),
+                      onPressed: () {
+                        changePassWord();
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
           )),
     );

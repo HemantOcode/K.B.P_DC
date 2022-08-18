@@ -169,15 +169,14 @@ class AuthProvider with ChangeNotifier {
   }
 
   getUserDetails({required String query}) async {
-    final url = "${webApi['domain']}${endPoints['getUserEmailORPhone']}";
+    try {
+      final url = "${webApi['domain']}${endPoints['getUserEmailORPhone']}";
 
-    final response = await postRequest(url: url, body: {'query': query});
+      final response = await postRequest(url: url, body: {'query': query});
 
-    final responseData = json.decode(response.body);
-    print(responseData);
-
-    if (responseData['success']) {
-      return responseData;
+     return response;
+    } catch (error) {
+      print(error);
     }
   }
 
@@ -187,9 +186,8 @@ class AuthProvider with ChangeNotifier {
       final response = await postRequest(
           url: url, body: {'phone': phone, 'password': password});
 
-      final responseData = json.decode(response.body);
 
-      return responseData['success'];
+      return response['success'];
     } catch (e) {
       rethrow;
     }

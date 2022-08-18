@@ -26,6 +26,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   String displayMessage = '';
   String verificationIdFirebase = '';
   String invalidOTP = '';
+  String userFoundAndNot = '';
+  String phoneNumber = '';
 
   getUserDetails() async {
     if (_formKey.currentState!.validate()) {
@@ -33,14 +35,23 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
         isLoading = true;
       });
 
-      final Map<dynamic, dynamic> user =
+      final user =
           await Provider.of<AuthProvider>(context, listen: false)
               .getUserDetails(query: phoneEmailController.text);
-      if (!user.isEmpty) {
+
+      if (!user['success']) {
+        setState(() {
+          userFoundAndNot = 'User with this credentials does not exits';
+          isLoading = false;
+        });
+        return;
+      }
+      if (user['success']) {
         phoneEmailNode.unfocus();
+        phoneNumber = user['result']['phone'];
         FirebaseAuth _auth = FirebaseAuth.instance;
         _auth.verifyPhoneNumber(
-          phoneNumber: '+91' + "${user['phone']}",
+          phoneNumber: '+91' + "${user['result']['phone']}",
           // phoneNumber: '+917021197280',
           verificationCompleted: (PhoneAuthCredential credential) {
             print(credential);
@@ -64,6 +75,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       }
       setState(() {
         isLoading = false;
+        
+
       });
     }
   }
@@ -79,7 +92,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ChanegPasswordScreen(phone: '7021197820'),
+          builder: (context) => ChanegPasswordScreen(phone:phoneNumber),
         ),
       );
     }).catchError((error) {
@@ -94,6 +107,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     setState(() {
       lockphoneEmailInput = true;
       verificationIdFirebase = '';
+      phoneNumber ='';
     });
   }
 
@@ -137,6 +151,14 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       border: const OutlineInputBorder(
                         borderSide: BorderSide(),
                       ),
+                    ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    child: Text(
+                      userFoundAndNot,
+                      style: const TextStyle(
+                          fontSize: 14.5, fontWeight: FontWeight.w600),
                     ),
                   ),
                   Container(
@@ -198,7 +220,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                           ),
                         ),
                         Container(
-                          alignment: Alignment.center,
+                          alignment: Alignment.centerLeft,
                           width: double.infinity,
                           child: Text(
                             invalidOTP,

@@ -1,4 +1,4 @@
-// const webApi = {'domain': 'http://192.168.0.103:3000'};
+// const webApi = {'domain': 'http://192.168.0.110:3000'};
 // const webApi = {'domain': 'https://kbpcollege.herokuapp.com'};
 
 //
@@ -18,7 +18,7 @@ const endPoints = {
   //appConfig
 
   'insertAppConfig': '/api/appConfig/insertAppConfig',
-
+  
   'fetchAppConfig': '/api/appConfig/fetchAppConfig',
 
   'fetchCommonAppConfig': '/api/appConfig/fetchCommonAppConfig',
