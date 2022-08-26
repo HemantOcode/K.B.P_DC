@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     try {
       LocalNotificationService.initialize(context, handleNotificationClick);
       FirebaseMessaging.onMessage.listen((event) {
-        // LocalNotificationService.display(event);
+        LocalNotificationService.display(event);
       });
 
       FirebaseMessaging.onMessageOpenedApp.listen((event) {
